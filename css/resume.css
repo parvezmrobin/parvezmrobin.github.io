@@ -63,6 +63,10 @@ h2 {
   font-size: 1.125rem;
 }
 
+.list-skill > .row > div {
+  margin-bottom: 1rem;
+}
+
 .list-certification li {
   padding-bottom: .75rem;
 }
