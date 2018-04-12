@@ -61,6 +61,7 @@ h2 {
 
 .list-skill {
   font-size: 1.125rem;
+  font-weight: 600;
 }
 
 .list-skill > .row > div {
@@ -69,6 +70,10 @@ h2 {
 
 .list-certification li {
   padding-bottom: .75rem;
+}
+
+h3 {
+  color: #17a2b8 !important;
 }
 
 #sideNav .navbar-nav .nav-item .nav-link {
