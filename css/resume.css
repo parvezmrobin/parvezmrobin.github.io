@@ -76,6 +76,14 @@ h3 {
   color: #17a2b8 !important;
 }
 
+i {
+  background-color: #17a2b8;
+  border-radius: .125rem;
+  padding: .125rem;
+  color: whitesmoke;
+  font-size: 1.125rem;
+}
+
 #sideNav .navbar-nav .nav-item .nav-link {
   font-weight: 600;
   text-transform: uppercase;
@@ -165,4 +173,13 @@ a {
 
 a:hover, a:focus, a:active {
   color: #001a1a;
+}
+
+.progress {
+  border-radius: .125rem;
+  height: 1.125rem;
+}
+
+.progress-bar {
+  background-color: #188781;
 }
