@@ -1,0 +1,29 @@
+.bg-primary {
+  background-color: $primary !important;
+}
+
+.text-primary {
+  color: $primary !important;
+}
+
+.text-light {
+  color: $orange !important;
+}
+
+a {
+  color: $primary;
+  &:hover,
+  &:focus,
+  &:active {
+    color: darken($primary, 15%);
+  }
+}
+
+.progress{
+  border-radius: .125rem;
+  height: 1.125rem;
+}
+
+.progress-bar {
+  background-color: darken(lightseagreen, 10%);
+}

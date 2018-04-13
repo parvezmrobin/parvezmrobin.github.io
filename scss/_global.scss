@@ -1,0 +1,109 @@
+// Global styling for this template
+
+body {
+  @include body-font;
+  padding-top: 54px;
+  color: $gray-600;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 0;
+    padding-left: $sidebar-base-width;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include heading-font;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $gray-800;
+}
+
+h1 {
+  font-size: 6rem;
+  line-height: 5.5rem;
+}
+
+h2 {
+  font-size: 3.5rem;
+}
+
+.subheading {
+  text-transform: uppercase;
+  font-weight: 500;
+  @include heading-font;
+  font-size: 1.35rem;
+}
+
+.list-social-icons {
+  a {
+    color: $gray-700;
+    &:hover {
+      color: $primary;
+    }
+    .fa-lg {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+.list-icons, .list-skill {
+  i {
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.list-icons {
+  font-size: 3rem;
+}
+
+.list-skill {
+  font-size: 1.125rem;
+  font-weight: 600;
+  > .row > div {
+    margin-bottom: 1rem;
+  }
+}
+
+.list-certification li {
+  padding-bottom: .75rem;
+}
+
+h3 {
+  color: #17a2b8 !important;
+}
+
+.alert-heading + div {
+  i {
+    background-color: $cyan;
+    border-radius: .125rem;
+    padding: .125rem;
+    color: whitesmoke;
+    font-size: 1.125rem;
+  }
+}
+
+.alert-heading.text-warning + div {
+  i {
+    background-color: $orange;
+  }
+}
+
+.list-skill {
+  .row .row {
+    padding: $skill-base-spacing*2;
+    border-radius: $skill-base-spacing;
+    transition: background-color 1s;
+    &:hover {
+      background-color: transparentize($cyan, .8);
+    }
+  }
+}
