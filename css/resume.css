@@ -52,7 +52,7 @@ h2 {
 }
 
 .list-icons i:hover, .list-skill i:hover {
-  color: #006767;
+  color: white;
 }
 
 .list-icons {
@@ -76,12 +76,26 @@ h3 {
   color: #17a2b8 !important;
 }
 
-i {
+.alert-heading + div i {
   background-color: #17a2b8;
   border-radius: .125rem;
   padding: .125rem;
   color: whitesmoke;
   font-size: 1.125rem;
+}
+
+.alert-heading.text-warning + div i {
+  background-color: #BD5D38;
+}
+
+.list-skill .row .row {
+  padding: 0.25rem;
+  border-radius: 0.125rem;
+  transition: background-color 1s;
+}
+
+.list-skill .row .row:hover {
+  background-color: rgba(23, 162, 184, 0.2);
 }
 
 #sideNav .navbar-nav .nav-item .nav-link {
