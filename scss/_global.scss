@@ -53,6 +53,21 @@ h2 {
   }
 }
 
+.list-social-icons{
+  .fb a:hover{
+    color: #3B5998;
+  }
+  .twitter a:hover{
+    color: #0084b4;
+  }
+  .linkedin a:hover{
+    color: #007bb6;
+  }
+  .github a:hover{
+    color: #333;
+  }
+}
+
 .list-icons, .list-skill {
   i {
     &:hover {

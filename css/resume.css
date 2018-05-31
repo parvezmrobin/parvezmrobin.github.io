@@ -51,6 +51,22 @@ h2 {
   font-size: 1.75rem;
 }
 
+.list-social-icons .fb a:hover {
+  color: #3B5998;
+}
+
+.list-social-icons .twitter a:hover {
+  color: #0084b4;
+}
+
+.list-social-icons .linkedin a:hover {
+  color: #007bb6;
+}
+
+.list-social-icons .github a:hover {
+  color: #333;
+}
+
 .list-icons i:hover, .list-skill i:hover {
   color: white;
 }
