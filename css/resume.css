@@ -32,6 +32,10 @@ h2 {
   font-size: 3.5rem;
 }
 
+h3 {
+  color: #17a2b8 !important;
+}
+
 .subheading {
   text-transform: uppercase;
   font-weight: 500;
@@ -88,8 +92,14 @@ h2 {
   padding-bottom: .75rem;
 }
 
-h3 {
-  color: #17a2b8 !important;
+.list-skill .row .row {
+  padding: 0.25rem;
+  border-radius: 0.125rem;
+  transition: background-color 1s;
+}
+
+.list-skill .row .row:hover {
+  background-color: rgba(23, 162, 184, 0.2);
 }
 
 .alert-heading + div i {
@@ -102,16 +112,6 @@ h3 {
 
 .alert-heading.text-warning + div i {
   background-color: #BD5D38;
-}
-
-.list-skill .row .row {
-  padding: 0.25rem;
-  border-radius: 0.125rem;
-  transition: background-color 1s;
-}
-
-.list-skill .row .row:hover {
-  background-color: rgba(23, 162, 184, 0.2);
 }
 
 .carousel {
@@ -132,6 +132,10 @@ h3 {
 
 .carousel-control-next, .carousel-control-prev {
   width: 5%;
+}
+
+.ib {
+  display: inline-block;
 }
 
 #sideNav .navbar-nav .nav-item .nav-link {

@@ -13,6 +13,7 @@ body {
   }
 }
 
+//region Heading
 h1,
 h2,
 h3,
@@ -34,6 +35,10 @@ h2 {
   font-size: 3.5rem;
 }
 
+h3 {
+  color: #17a2b8 !important;
+}
+
 .subheading {
   text-transform: uppercase;
   font-weight: 500;
@@ -41,6 +46,9 @@ h2 {
   font-size: 1.35rem;
 }
 
+//endregion
+
+//region List
 .list-social-icons {
   a {
     color: $gray-700;
@@ -92,10 +100,20 @@ h2 {
   padding-bottom: .75rem;
 }
 
-h3 {
-  color: #17a2b8 !important;
+.list-skill {
+  .row .row {
+    padding: $skill-base-spacing*2;
+    border-radius: $skill-base-spacing;
+    transition: background-color 1s;
+    &:hover {
+      background-color: transparentize($cyan, .8);
+    }
+  }
 }
 
+//endregion
+
+//region Alert
 .alert-heading + div {
   i {
     background-color: $cyan;
@@ -111,19 +129,9 @@ h3 {
     background-color: $orange;
   }
 }
+//endregion
 
-.list-skill {
-  .row .row {
-    padding: $skill-base-spacing*2;
-    border-radius: $skill-base-spacing;
-    transition: background-color 1s;
-    &:hover {
-      background-color: transparentize($cyan, .8);
-    }
-  }
-}
-
-// Carousel
+//region Carousel
 .carousel {
   background-color: transparentize($cyan, .8);
   border-radius: .25rem;
@@ -143,3 +151,10 @@ h3 {
 .carousel-control-next, .carousel-control-prev {
   width: 5%;
 }
+//endregion
+
+//region Utility
+.ib {
+  display: inline-block;
+}
+//endregion
