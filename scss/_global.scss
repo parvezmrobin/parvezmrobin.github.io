@@ -53,17 +53,17 @@ h2 {
   }
 }
 
-.list-social-icons{
-  .fb a:hover{
+.list-social-icons {
+  .fb a:hover {
     color: #3B5998;
   }
-  .twitter a:hover{
+  .twitter a:hover {
     color: #0084b4;
   }
-  .linkedin a:hover{
+  .linkedin a:hover {
     color: #007bb6;
   }
-  .github a:hover{
+  .github a:hover {
     color: #333;
   }
 }
@@ -121,4 +121,18 @@ h3 {
       background-color: transparentize($cyan, .8);
     }
   }
+}
+
+// Carousel
+.carousel {
+  background-color: transparentize($cyan, .8);
+  border-radius: .25rem;
+}
+
+.carousel p {
+  color: darkslategray;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  width: 5%;
 }

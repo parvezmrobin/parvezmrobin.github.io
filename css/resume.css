@@ -114,6 +114,19 @@ h3 {
   background-color: rgba(23, 162, 184, 0.2);
 }
 
+.carousel {
+  background-color: rgba(23, 162, 184, 0.2);
+  border-radius: .25rem;
+}
+
+.carousel p {
+  color: darkslategray;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  width: 5%;
+}
+
 #sideNav .navbar-nav .nav-item .nav-link {
   font-weight: 600;
   text-transform: uppercase;

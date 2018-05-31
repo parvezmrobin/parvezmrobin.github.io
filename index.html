@@ -49,7 +49,7 @@
                 <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#experience">Projects</a>
+                <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#education">Education</a>
@@ -396,136 +396,164 @@
         </div>
     </section>
 
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="projects">
         <div class="my-auto">
             <h2 class="mb-5">Projects</h2>
 
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <a href="http://beta1.cseku.ac.bd/public/index.php" target="_blank">
-                        <h3 class="mb-0">CSEKU Website</h3>
-                    </a>
-                    <div class="subheading mb-3">Team Leader & System Analyst</div>
-                    <p>Official website of CSE discipline, Khulna University.</p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">PHP | Bootstrap</span>
-                </div>
-            </div>
+            <div class="carousel slide " id="project-slider" data-ride="carousel">
 
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Jorip</h3>
-                    <div class="subheading mb-3">Team Leader & Backend Engineer</div>
-                    <p>
-                        Survey app built with Laravel, Bootstrap and Android. Placed <i>second runner up</i> in <b>DIU
-                        APP
-                        Contest, 2017</b>.
-                    </p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">Laravel | Bootstrap | Android</span>
-                </div>
-            </div>
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#project-slider" data-slide-to="0" class="active"></li>
+                    <li data-target="#project-slider" data-slide-to="1"></li>
+                    <li data-target="#project-slider" data-slide-to="2"></li>
+                    <li data-target="#project-slider" data-slide-to="3"></li>
+                    <li data-target="#project-slider" data-slide-to="4"></li>
+                    <li data-target="#project-slider" data-slide-to="5"></li>
+                    <li data-target="#project-slider" data-slide-to="6"></li>
+                    <li data-target="#project-slider" data-slide-to="7"></li>
+                    <li data-target="#project-slider" data-slide-to="8"></li>
+                </ul>
 
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Submission Tester</h3>
-                    <div class="subheading mb-3">Team Leader & Backend Engineer</div>
-                    <p>
-                        Laravel application for automating assigning assignments, corresponding submission and
-                        suggesting possible copy. Placed
-                        <i>second runner up</i> in <b>Hackathon: CSE Fest, 2017</b>.
-                    </p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">Laravel | Bootstrap</span>
-                </div>
-            </div>
+                <div class="carousel-inner d-flex">
+                    <div class="carousel-item m-5 active">
+                        <div class="resume-content">
+                            <a href="http://beta1.cseku.ac.bd/public/index.php" target="_blank">
+                                <h3 class="mb-0">CSEKU Website</h3>
+                            </a>
+                            <h4 class="mb-3">Team Leader & System Analyst</h4>
+                            <p>Official website of CSE discipline, Khulna University.</p>
+                        </div>
+                        <div class="resume-date">
+                            <span class="text-primary">PHP | Bootstrap</span>
+                        </div>
+                    </div>
 
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Scheduler</h3>
-                    <div class="subheading mb-3">Team Leader & Backend Engineer</div>
-                    <p>
-                        An application for automating users’ daily task, enabling co-operation with simple
-                        interfacing. Built with Laravel, Vue JS and Bootstrap.
-                    </p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">Laravel | Vue JS | Bootstrap</span>
-                </div>
-            </div>
+                    <div class="carousel-item m-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">Jorip</h3>
+                            <h4 class="mb-3">Team Leader & Backend Engineer</h4>
+                            <p>
+                                Survey app built with Laravel, Bootstrap and Android. Placed <i>second runner up</i> in
+                                <b>DIU APP Contest, 2017</b>.
+                            </p>
+                        </div>
+                        <div class="resume-date">
+                            <span class="text-primary">Laravel | Bootstrap | Android</span>
+                        </div>
+                    </div>
 
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Web School</h3>
-                    <div class="subheading mb-3">Personal Project</div>
-                    <p>
-                        An application for automating mark management of a school. Supports dynamic mark
-                        distribution, multiple teacher for same subject, forth subject, and hierarchical access to mark.
-                        Built
-                        with Laravel, Vue JS and Bootstrap.
-                    </p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">Laravel | Vue JS | Bootstrap</span>
-                </div>
-            </div>
+                    <div class="carousel-item m-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">Submission Tester</h3>
+                            <h4 class="mb-3">Team Leader & Backend Engineer</h4>
+                            <p>
+                                Laravel application for automating assigning assignments, corresponding submission and
+                                suggesting possible copy. Placed
+                                <i>second runner up</i> in <b>Hackathon: CSE Fest, 2017</b>.
+                            </p>
+                        </div>
+                        <div class="resume-date">
+                            <span class="text-primary">Laravel | Bootstrap</span>
+                        </div>
+                    </div>
 
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Digital School</h3>
-                    <div class="subheading mb-3">Team Leader & Backend Engineer</div>
-                    <p>
-                        An cpplication for automating a school regular tasks including admission, noticing,
-                        parent-teacher collaboration, mark management, and transaction. Built with ASP.Net and bootstrap
-                    </p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">ASP.Net | Bootstrap</span>
-                </div>
-            </div>
+                    <div class="carousel-item m-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">Scheduler</h3>
+                            <h4 class=" mb-3">Team Leader & Backend Engineer</h4>
+                            <p>
+                                An application for automating users’ daily task, enabling co-operation with simple
+                                interfacing. Built with Laravel, Vue JS and Bootstrap.
+                            </p>
+                        </div>
+                        <div class="resume-date">
+                            <span class="text-primary">Laravel | Vue JS | Bootstrap</span>
+                        </div>
+                    </div>
 
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Class Forum</h3>
-                    <div class="subheading mb-3">Team Leader & Backend Engineer</div>
-                    <p>
-                        Class based forum built with Laravel, Vue JS and Bootstrap.
-                    </p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">Laravel | Vue JS | Bootstrap</span>
-                </div>
-            </div>
+                    <div class="carousel-item m-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">Web School</h3>
+                            <h4 class=" mb-3">Personal Project</h4>
+                            <p>
+                                An application for automating mark management of a school. Supports dynamic mark
+                                distribution, multiple teacher for same subject, forth subject, and hierarchical access
+                                to mark.
+                                Built
+                                with Laravel, Vue JS and Bootstrap.
+                            </p>
+                        </div>
+                        <div class="resume-date">
+                            <span class="text-primary">Laravel | Vue JS | Bootstrap</span>
+                        </div>
+                    </div>
 
-            <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                <div class="resume-content mr-auto">
-                    <h3 class="mb-0">Alien Invasion</h3>
-                    <div class="subheading mb-3">Team Leader & Programmer</div>
-                    <p>
-                        First person shooter game built with the Unity game engine.
-                    </p>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">Unity 3D | C#</span>
-                </div>
-            </div>
+                    <div class="carousel-item m-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">Digital School</h3>
+                            <h4 class=" mb-3">Team Leader & Backend Engineer</h4>
+                            <p>
+                                An cpplication for automating a school regular tasks including admission, noticing,
+                                parent-teacher collaboration, mark management, and transaction. Built with ASP.Net and
+                                bootstrap
+                            </p>
+                        </div>
+                        <div class="resume-date">
+                            <span class="text-primary">ASP.Net | Bootstrap</span>
+                        </div>
+                    </div>
 
-            <div class="resume-item d-flex flex-column flex-md-row">
-                <div class="resume-content mr-auto">
-                    <a href="https://packagist.org/packages/parvezmrobin/db-model" target="_blank">
-                        <h3 class="mb-0">DB Model</h3>
-                    </a>
-                    <div class="subheading mb-3">Personal Project</div>
-                    <p>
-                        Composer package for accessing MySQL database in an OOP fashion.
-                    </p>
+                    <div class="carousel-item m-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">Class Forum</h3>
+                            <h4 class=" mb-3">Team Leader & Backend Engineer</h4>
+                            <p>
+                                Class based forum built with Laravel, Vue JS and Bootstrap.
+                            </p>
+                        </div>
+                        <div class="resume-date">
+                            <span class="text-primary">Laravel | Vue JS | Bootstrap</span>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item m-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">Alien Invasion</h3>
+                            <h4 class=" mb-3">Team Leader & Programmer</h4>
+                            <p>
+                                First person shooter game built with the Unity game engine.
+                            </p>
+                        </div>
+                        <div class="resume-date">
+                            <span class="text-primary">Unity 3D | C#</span>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item m-5">
+                        <div class="resume-content">
+                            <a href="https://packagist.org/packages/parvezmrobin/db-model" target="_blank">
+                                <h3 class="mb-0">DB Model</h3>
+                            </a>
+                            <h4 class="mb-3">Personal Project</h4>
+                            <p>
+                                Composer package for accessing MySQL database in an OOP fashion.
+                            </p>
+                        </div>
+                        <div class="resume-date">
+                            <span class="text-primary">PHP | Composer</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="resume-date text-md-right">
-                    <span class="text-primary">PHP | Composer</span>
-                </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#project-slider" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#project-slider" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+
             </div>
 
         </div>
