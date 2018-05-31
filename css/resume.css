@@ -110,6 +110,10 @@ h3 {
   font-size: 1.125rem;
 }
 
+.alert-heading + div.proficient i {
+  background-color: #006767;
+}
+
 .alert-heading.text-warning + div i {
   background-color: #BD5D38;
 }

@@ -124,6 +124,12 @@ h3 {
   }
 }
 
+.alert-heading + div.proficient {
+  i {
+    background-color: $primary;
+  }
+}
+
 .alert-heading.text-warning + div {
   i {
     background-color: $orange;
