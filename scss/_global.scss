@@ -131,6 +131,13 @@ h3 {
 
 .carousel p {
   color: darkslategray;
+  min-height: 5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .carousel p {
+    min-height: 10rem;
+  }
 }
 
 .carousel-control-next, .carousel-control-prev {

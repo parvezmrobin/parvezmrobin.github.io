@@ -121,6 +121,13 @@ h3 {
 
 .carousel p {
   color: darkslategray;
+  min-height: 5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .carousel p {
+    min-height: 10rem;
+  }
 }
 
 .carousel-control-next, .carousel-control-prev {
@@ -176,10 +183,6 @@ section.resume-section {
   border-bottom: 1px solid #dee2e6;
   padding-top: 5rem !important;
   padding-bottom: 5rem !important;
-}
-
-section.resume-section .resume-item .resume-date {
-  min-width: none;
 }
 
 @media (min-width: 768px) {
