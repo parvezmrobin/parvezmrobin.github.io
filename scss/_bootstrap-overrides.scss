@@ -19,7 +19,7 @@ a {
   }
 }
 
-.progress{
+.progress {
   border-radius: .125rem;
   height: 1.125rem;
 }
@@ -27,3 +27,41 @@ a {
 .progress-bar {
   background-color: darken(lightseagreen, 10%);
 }
+
+//region Carousel
+.carousel {
+  background-color: transparentize($cyan, .8);
+  border-radius: .25rem;
+}
+
+.carousel p {
+  color: darkslategray;
+  min-height: 5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .carousel p {
+    min-height: 10rem;
+  }
+}
+
+.carousel-control-next, .carousel-control-prev {
+  width: 5%;
+}
+
+.carousel-indicators li {
+  background-color: $info;
+}
+
+.carousel-indicators .active {
+  background-color: $primary;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  border-radius: 100%;
+  padding: 5px;
+  box-shadow: 0 0 8px $secondary;
+  background-color: transparentize($cyan, .6);
+}
+
+//endregion

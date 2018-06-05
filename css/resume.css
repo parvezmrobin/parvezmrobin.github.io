@@ -48,7 +48,7 @@ h3 {
 }
 
 .list-social-icons a:hover {
-  color: #006767;
+  color: #004953;
 }
 
 .list-social-icons a .fa-lg {
@@ -111,31 +111,11 @@ h3 {
 }
 
 .alert-heading + div.proficient i {
-  background-color: #006767;
+  background-color: #004953;
 }
 
 .alert-heading.text-warning + div i {
   background-color: #BD5D38;
-}
-
-.carousel {
-  background-color: rgba(23, 162, 184, 0.2);
-  border-radius: .25rem;
-}
-
-.carousel p {
-  color: darkslategray;
-  min-height: 5rem;
-}
-
-@media screen and (max-width: 767px) {
-  .carousel p {
-    min-height: 10rem;
-  }
-}
-
-.carousel-control-next, .carousel-control-prev {
-  width: 5%;
 }
 
 .ib {
@@ -210,11 +190,11 @@ section.resume-section {
 }
 
 .bg-primary {
-  background-color: #006767 !important;
+  background-color: #004953 !important;
 }
 
 .text-primary {
-  color: #006767 !important;
+  color: #004953 !important;
 }
 
 .text-light {
@@ -222,11 +202,11 @@ section.resume-section {
 }
 
 a {
-  color: #006767;
+  color: #004953;
 }
 
 a:hover, a:focus, a:active {
-  color: #001a1a;
+  color: #000607;
 }
 
 .progress {
@@ -236,4 +216,39 @@ a:hover, a:focus, a:active {
 
 .progress-bar {
   background-color: #188781;
+}
+
+.carousel {
+  background-color: rgba(23, 162, 184, 0.2);
+  border-radius: .25rem;
+}
+
+.carousel p {
+  color: darkslategray;
+  min-height: 5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .carousel p {
+    min-height: 10rem;
+  }
+}
+
+.carousel-control-next, .carousel-control-prev {
+  width: 5%;
+}
+
+.carousel-indicators li {
+  background-color: #17a2b8;
+}
+
+.carousel-indicators .active {
+  background-color: #004953;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  border-radius: 100%;
+  padding: 5px;
+  box-shadow: 0 0 8px #868e96;
+  background-color: rgba(23, 162, 184, 0.4);
 }

@@ -137,28 +137,6 @@ h3 {
 }
 //endregion
 
-//region Carousel
-.carousel {
-  background-color: transparentize($cyan, .8);
-  border-radius: .25rem;
-}
-
-.carousel p {
-  color: darkslategray;
-  min-height: 5rem;
-}
-
-@media screen and (max-width: 767px) {
-  .carousel p {
-    min-height: 10rem;
-  }
-}
-
-.carousel-control-next, .carousel-control-prev {
-  width: 5%;
-}
-//endregion
-
 //region Utility
 .ib {
   display: inline-block;
