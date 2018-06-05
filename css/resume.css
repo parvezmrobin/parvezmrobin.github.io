@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:600,600i");
 body {
   font-family: 'Open Sans', serif;
   padding-top: 54px;
@@ -120,6 +121,13 @@ h3 {
 
 .ib {
   display: inline-block;
+}
+
+.info {
+  font-family: "Open Sans", cursive;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1.125rem;
 }
 
 #sideNav .navbar-nav .nav-item .nav-link {
