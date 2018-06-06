@@ -25,23 +25,18 @@ a {
 }
 
 .progress-bar {
-  background-color: $primary;
+  background-color: darken(lightseagreen, 10%);
 }
 
 //region Carousel
 .carousel {
-  background-color: transparentize(#908020, .3);
+  background-color: transparentize($cyan, .8);
   border-radius: .25rem;
 }
 
-.carousel h3, .bg h3 {
-  color: $indigo !important;
-}
-
 .carousel p {
-  color: black;
+  color: darkslategray;
   min-height: 5rem;
-  text-shadow: 0 0 1px gold;
 }
 
 @media screen and (max-width: 767px) {
@@ -60,6 +55,13 @@ a {
 
 .carousel-indicators .active {
   background-color: $primary;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  border-radius: 100%;
+  padding: 5px;
+  box-shadow: 0 0 8px $secondary;
+  background-color: transparentize($cyan, .6);
 }
 
 //endregion
