@@ -1,9 +1,23 @@
 // Global styling for this template
 
+html {
+  background: url(../img/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transition: background-image 2s ease-in-out;
+  transition: background-image 2s ease-in-out;
+}
+
 body {
   @include body-font;
   padding-top: 54px;
-  color: $gray-600;
+  color: $black;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.8;
+  background-color: transparent;
 }
 
 @media (min-width: 992px) {
@@ -97,7 +111,11 @@ h3 {
 }
 
 .list-certification li {
-  padding-bottom: .75rem;
+  padding-bottom: 1rem;
+
+  i {
+    margin-top: .25rem;
+  }
 }
 
 .list-skill {
@@ -124,8 +142,8 @@ h3 {
   }
 }
 
-.alert-heading + div.proficient {
-  i {
+.alert-heading + div {
+  div.proficient i {
     background-color: $primary;
   }
 }
@@ -135,11 +153,18 @@ h3 {
     background-color: $orange;
   }
 }
+
 //endregion
 
 //region Utility
 .ib {
   display: inline-block;
+}
+
+.bg {
+  background-color: transparentize($primary, .4);
+  border-radius: 2px;
+  padding: 8px;
 }
 
 .info {
@@ -148,4 +173,5 @@ h3 {
   font-style: italic;
   font-size: 1.125rem;
 }
+
 //endregion
