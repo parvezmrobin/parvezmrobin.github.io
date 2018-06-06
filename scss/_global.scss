@@ -4,6 +4,7 @@ body {
   @include body-font;
   padding-top: 56px;
   color: $gray-600;
+  background-color: honeydew;
 }
 
 @media (min-width: 992px) {

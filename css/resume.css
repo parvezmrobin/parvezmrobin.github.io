@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:600,600i");
 body {
   font-family: 'Open Sans', serif;
-  padding-top: 54px;
+  padding-top: 56px;
   color: #868e96;
+  background-color: honeydew;
 }
 
 @media (min-width: 992px) {
