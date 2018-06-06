@@ -243,7 +243,7 @@ a:hover, a:focus, a:active {
 }
 
 .carousel-control-next, .carousel-control-prev {
-  width: 5%;
+  width: 3rem;
 }
 
 .carousel-indicators li {
