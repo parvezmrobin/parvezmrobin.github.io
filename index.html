@@ -24,6 +24,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/resume.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
 
 </head>
 
@@ -32,7 +33,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
         <span class="d-block d-lg-none">Parvez M Robin</span>
-        <span class="d-none d-lg-block">
+        <span class="d-none d-lg-block" id="dp">
           <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
         </span>
     </a>
@@ -69,7 +70,8 @@
     <section id="about" class="resume-section p-3 p-lg-5 d-flex d-column">
         <div class="my-auto">
             <h1 class="mb-0">Parvez
-                <span class="text-primary" style="display: inline-block;">M Robin</span>
+                <span class="text-primary" style="display: inline-block;"><span id="anim"
+                                                                                style="display: inline-block;">M</span> Robin</span>
             </h1>
             <div class="subheading mb-5">Khulna University, Khulna – 9208 |
                 <a href="mailto:parvezmrobin@gmail.com">parvezmrobin@gmail.com</a>
@@ -740,6 +742,24 @@
 
 <!-- Custom scripts for this template -->
 <script src="js/resume.min.js"></script>
+
+<script>
+    anims = ['rubberBand', 'swing', 'tada'];
+    icons = ['fa-facebook', 'fa-twitter', 'fa-linkedin', 'fa-github'];
+
+    function animate(x) {
+        i = Math.floor(Math.random() * 4);
+        const $li = $('.list-social-icons').children();
+        $($li[i]).removeClass(x + ' animated').addClass(x + ' animated')
+            .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass(x + ' animated');
+            });
+    };
+    setInterval(() => {
+        i = Math.floor(Math.random() * 3);
+        animate(anims[i]);
+    }, 1000)
+</script>
 
 </body>
 
