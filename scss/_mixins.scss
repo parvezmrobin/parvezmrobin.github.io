@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+@import url('https://fonts.googleapis.com/css?family=Rancho|Overlock:400,400i,700,700i,900,900i|Arima+Madurai');
+
 // Mixins
 // Bootstrap Button Variant
 @mixin background-cover {
@@ -6,9 +10,19 @@
   -o-background-size: cover;
   background-size: cover;
 }
+
 @mixin body-font {
-  font-family: 'Open Sans', serif;
+  font-family: 'Overlock', serif;
 }
+
 @mixin heading-font {
   font-family: 'Saira Extra Condensed', serif;
+}
+
+@mixin title-font {
+  font-family: 'Rancho', cursive;
+}
+
+@mixin subtitle-font {
+  font-family: 'Arima Madurai', cursive;
 }

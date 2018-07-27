@@ -2,8 +2,9 @@
 
 body {
   @include body-font;
+  font-size: 1.125rem;
   padding-top: 56px;
-  color: $gray-600;
+  color: $gray-700;
   background-color: honeydew;
 }
 
@@ -21,7 +22,7 @@ h3,
 h4,
 h5,
 h6 {
-  @include heading-font;
+  @include subtitle-font;
   font-weight: 700;
   text-transform: uppercase;
   color: $gray-800;
@@ -33,18 +34,23 @@ h1 {
 }
 
 h2 {
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 
 h3 {
-  color: #17a2b8 !important;
+  color: $secondary !important;
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
 }
 
 .subheading {
   text-transform: uppercase;
   font-weight: 500;
-  @include heading-font;
-  font-size: 1.35rem;
+  @include body-font;
+  font-size: 1.25rem;
 }
 
 //endregion
@@ -148,5 +154,9 @@ h3 {
   font-weight: 600;
   font-style: italic;
   font-size: 1.125rem;
+}
+
+b {
+  font-weight: bolder;
 }
 //endregion

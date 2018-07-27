@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Rancho');
-@import url('https://fonts.googleapis.com/css?family=Arima+Madurai');
-
 section.resume-section {
   border-bottom: 1px solid $gray-300;
   padding-top: 5rem !important;
@@ -29,12 +26,12 @@ section.resume-section {
 }
 
 .name{
-  font-family: 'Rancho', cursive;
+  @include title-font;
   font-size: 5rem;
 }
 
 .address {
   margin-bottom: 1.5rem;
-  font-family: 'Arima Madurai', cursive;
+  @include subtitle-font;
   font-size: 1.25rem;
 }

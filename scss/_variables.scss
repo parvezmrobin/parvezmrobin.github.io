@@ -27,7 +27,7 @@ $cyan:    #17a2b8 !default;
 $midnight-green: #004953 !default;;
 
 $primary:       $midnight-green !default;
-$secondary:     $gray-600 !default;
+$secondary:     lighten($midnight-green, 10%) !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;

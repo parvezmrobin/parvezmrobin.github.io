@@ -1,9 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Rancho");
-@import url("https://fonts.googleapis.com/css?family=Arima+Madurai");
+@import url("https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Rancho|Overlock:400,400i,700,700i,900,900i|Arima+Madurai");
 body {
-  font-family: 'Open Sans', serif;
+  font-family: 'Overlock', serif;
+  font-size: 1.125rem;
   padding-top: 56px;
-  color: #868e96;
+  color: #495057;
   background-color: honeydew;
 }
 
@@ -20,7 +22,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Saira Extra Condensed', serif;
+  font-family: 'Arima Madurai', cursive;
   font-weight: 700;
   text-transform: uppercase;
   color: #343a40;
@@ -32,18 +34,23 @@ h1 {
 }
 
 h2 {
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 
 h3 {
-  color: #17a2b8 !important;
+  color: #007686 !important;
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
 }
 
 .subheading {
   text-transform: uppercase;
   font-weight: 500;
-  font-family: 'Saira Extra Condensed', serif;
-  font-size: 1.35rem;
+  font-family: 'Overlock', serif;
+  font-size: 1.25rem;
 }
 
 .list-social-icons a {
@@ -132,7 +139,12 @@ h3 {
   font-size: 1.125rem;
 }
 
+b {
+  font-weight: bolder;
+}
+
 #sideNav .navbar-nav .nav-item .nav-link {
+  font-family: 'Arima Madurai', cursive;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -270,6 +282,6 @@ a:hover, a:focus, a:active {
 .carousel-control-next-icon, .carousel-control-prev-icon {
   border-radius: 100%;
   padding: 5px;
-  box-shadow: 0 0 8px #868e96;
+  box-shadow: 0 0 8px #007686;
   background-color: rgba(23, 162, 184, 0.4);
 }
