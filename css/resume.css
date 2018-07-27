@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Rancho");
+@import url("https://fonts.googleapis.com/css?family=Arima+Madurai");
 body {
   font-family: 'Open Sans', serif;
   padding-top: 56px;
@@ -195,6 +197,17 @@ section.resume-section {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
   }
+}
+
+.name {
+  font-family: 'Rancho', cursive;
+  font-size: 5rem;
+}
+
+.address {
+  margin-bottom: 1.5rem;
+  font-family: 'Arima Madurai', cursive;
+  font-size: 1.25rem;
 }
 
 .bg-primary {
