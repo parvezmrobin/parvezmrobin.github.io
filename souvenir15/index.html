@@ -10,12 +10,14 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
 
-<div class="container">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
+</head>
+<body style="background-color: black">
+
+<div class="container" style="">
     <div class="row align-items-center justify-content-center" style="height: 100vh;">
-        <div class="card" style="width: 100vw; max-width: 50rem;">
+        <div class="card border-secondary" style="width: 100vw; max-width: 50rem;">
             <div class="card-header bg-dark text-white">
                 <span>Rag 18 Reloaded</span>
                 <button type="button" class="close pull-left" aria-label="Close">
@@ -28,10 +30,12 @@
                     <span aria-hidden="true">&#x2013;</span>
                 </button>
             </div>
-            <div style="height: 25vw; background-color: purple;">
-                <pre class="lead text-white pl-3"><span class="text-info">songborto@rag18reloaded$~</span> ls disciplines</pre>
-                <p class="pl-3" id="vm">
-
+            <div style="height: 25vw; background-color: purple; font-family: 'Ubuntu', Consolas, monospace">
+                <p class="lead text-white pl-3">
+                    <span class="text-info" style="font-weight: 500">songborto@rag18reloaded$ ~</span>
+                    ls disciplines
+                </p>
+                <p class="pl-3" style="font-weight: 400" id="vm">
                     <a v-for="discipline in disciplines" :href="'discipline.html?name=' + discipline">
                         <span class="bg-primary text-white rounded mr-3 mb-3 px-1 d-inline-block">{{discipline}}</span>
                     </a>
