@@ -30,14 +30,14 @@
                     <span aria-hidden="true">&#x2013;</span>
                 </button>
             </div>
-            <div style="height: 25vw; background-color: purple; font-family: 'Ubuntu', Consolas, monospace">
-                <p class="lead text-white pl-3">
-                    <span class="text-info" style="font-weight: 500">songborto@rag18reloaded$ ~</span>
+            <div style="height: 25vw; background-color: #002B36; color: #839496; font-family: 'Ubuntu', Consolas, monospace">
+                <p class="lead pl-3">
+                    <span class="text-info" style="font-weight: 500">songborto@rag18reloaded</span>:~<span class="text-info">$</span>
                     ls disciplines
                 </p>
                 <p class="pl-3" style="font-weight: 400" id="vm">
                     <a v-for="discipline in disciplines" :href="'discipline.html?name=' + discipline">
-                        <span class="bg-primary text-white rounded mr-3 mb-3 px-1 d-inline-block">{{discipline}}</span>
+                        <span class="bg-info text-white rounded mr-3 mb-3 px-1 d-inline-block">{{discipline}}</span>
                     </a>
                 </p>
             </div>
