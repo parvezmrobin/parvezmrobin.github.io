@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Student Info</title>
+</head>
+<body style="background-color: black">
+
+<div class="container" id="vm">
+    <h1 class="pt-4 text-center" style="font-family: cursive">
+        <a href="index.html">Rag 18 Reloaded</a> <span class="text-white">-</span>
+        <a :href="'discipline.html?name=' + discipline">{{discipline}}</a>
+    </h1>
+
+    <div class="col-md-6 offset-md-3 pt-5">
+        <table class="table table-striped">
+            <tbody>
+            <tr v-for="(val, key) in student" class="">
+                <td class="bg-white text-primary"><strong>{{key}}</strong></td>
+                <td class="text-white">{{val}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script src="/vendor/vue/vue.js"></script>
+<script src="/vendor/xlsx/xlsx.full.min.js"></script>
+<script src="/vendor/axios/axios.js"></script>
+
+<script>
+    new Vue({
+        el: '#vm',
+        data: {
+            student: {},
+            id: '',
+            discipline: '',
+        },
+
+        methods: {
+            processSheet: function (sheets) {
+                let _jsonSheets = {}, _csvSheets = {};
+                sheets.SheetNames.forEach(function (sheetName) {
+                    const rowObjectArray = XLSX.utils.sheet_to_row_object_array(sheets.Sheets[sheetName]);
+                    const csvSheet = XLSX.utils.sheet_to_csv(sheets.Sheets[sheetName]);
+                    if (rowObjectArray.length > 0) {
+                        _jsonSheets[sheetName] = rowObjectArray;
+                        _csvSheets[sheetName] = csvSheet;
+                    }
+                });
+
+                // jsonSheets = _jsonSheets;
+                // csvSheets = _csvSheets;
+                console.log(_jsonSheets);
+                const sheet = _jsonSheets[this.discipline];
+                for (const student of sheet) {
+                    if (student["Student ID"] === this.id) {
+                        this.student = student;
+                        break;
+                    }
+                }
+            }
+        },
+
+        mounted() {
+            const queryString = new URLSearchParams(window.location.search)
+            this.discipline = queryString.get('discipline');
+            this.id = queryString.get('id');
+
+            axios.get('Souvenir 15.xlsx', {responseType: "arraybuffer"})
+                .then(r => {
+                    const data = new Uint8Array(r.data);
+                    const arr = [];
+                    for (let i = 0; i !== data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                    let bstr = arr.join("");
+
+                    /* Call XLSX */
+                    let sheets = XLSX.read(bstr, {type: "binary"});
+
+                    // console.log(sheets);
+                    this.processSheet(sheets);
+                })
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Discipline</title>
+
+    <style>
+        div.img-container {
+            box-shadow: 25px 25px 50px 0 black inset, -25px -25px 50px 0 black inset;
+            background: url(/images/souvenir/songborto.png) bottom; height: 50vh;
+        }
+    </style>
+</head>
+<body style="background-color: #000;">
+<div class="container">
+    <div class="row">
+        <div class="col img-container">
+            <div class="row align-items-start justify-content-center" style="height: 100%;">
+                <h1 class="text-white pt-4" style="font-family: cursive">
+                    <a href="index.html" class="text-white">Rag 18 Reloaded</a>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="vm">
+
+        <span class="bg-primary m-1 px-1 rounded" v-for="student in students" style="text-transform: capitalize;">
+            <a :href="'student.html?discipline=' + discipline + '&id=' + student['Student ID']" class="text-white">
+                {{student["Student ID"]}} - {{student.Name}}
+            </a>
+        </span>
+
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script src="/vendor/vue/vue.js"></script>
+<script src="/vendor/xlsx/xlsx.full.min.js"></script>
+<script src="/vendor/axios/axios.js"></script>
+
+<script>
+    new Vue({
+        el: '#vm',
+        data: {
+            students: [],
+            discipline: new URLSearchParams(window.location.search).get('name')
+        },
+
+        methods: {
+            processSheet: function (sheets) {
+                let _jsonSheets = {}, _csvSheets = {};
+                sheets.SheetNames.forEach(function (sheetName) {
+                    const rowObjectArray = XLSX.utils.sheet_to_row_object_array(sheets.Sheets[sheetName]);
+                    const csvSheet = XLSX.utils.sheet_to_csv(sheets.Sheets[sheetName]);
+                    if (rowObjectArray.length > 0) {
+                        _jsonSheets[sheetName] = rowObjectArray;
+                        _csvSheets[sheetName] = csvSheet;
+                    }
+                });
+
+                // jsonSheets = _jsonSheets;
+                // csvSheets = _csvSheets;
+                console.log(_jsonSheets);
+                this.students = _jsonSheets[this.discipline];
+            }
+        },
+
+        mounted() {
+            axios.get('Souvenir 15.xlsx', {responseType: "arraybuffer"})
+                .then(r => {
+                    const data = new Uint8Array(r.data);
+                    const arr = [];
+                    for (let i = 0; i !== data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                    let bstr = arr.join("");
+
+                    /* Call XLSX */
+                    let sheets = XLSX.read(bstr, {type: "binary"});
+
+                    // console.log(sheets);
+                    this.processSheet(sheets);
+                })
+        }
+    })
+</script>
+</body>
+</html>

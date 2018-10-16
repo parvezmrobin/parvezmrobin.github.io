@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Parvez M Robin">
+
+    <title>Souvenir - Rag 18 Reloaded</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="row align-items-center justify-content-center" style="height: 100vh;">
+        <div class="card" style="width: 100vw; max-width: 50rem;">
+            <div class="card-header bg-dark text-white">
+                <span>Rag 18 Reloaded</span>
+                <button type="button" class="close pull-left" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <button type="button" class="close pull-left pr-1" aria-label="Close">
+                    <span aria-hidden="true">&#x25FB;</span>
+                </button>
+                <button type="button" class="close pull-left pr-2" aria-label="Close">
+                    <span aria-hidden="true">&#x2013;</span>
+                </button>
+            </div>
+            <div style="height: 25vw; background-color: purple;">
+                <pre class="lead text-white pl-3"><span class="text-info">songborto@rag18reloaded$~</span> ls disciplines</pre>
+                <p class="pl-3" id="vm">
+
+                    <a v-for="discipline in disciplines" :href="'discipline.html?name=' + discipline">
+                        <span class="bg-primary text-white rounded mr-3 mb-3 px-1 d-inline-block">{{discipline}}</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script src="/vendor/vue/vue.js"></script>
+<script src="/vendor/xlsx/xlsx.full.min.js"></script>
+<script src="/vendor/axios/axios.js"></script>
+
+<script>
+    new Vue({
+        el: '#vm',
+        data: {
+            disciplines: []
+        },
+
+        mounted() {
+            axios.get('Souvenir 15.xlsx', {responseType: "arraybuffer"})
+                .then(r => {
+                    const data = new Uint8Array(r.data);
+                    const arr = [];
+                    for (let i = 0; i !== data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                    let bstr = arr.join("");
+
+                    /* Call XLSX */
+                    let sheets = XLSX.read(bstr, {type: "binary"});
+
+                    this.disciplines = sheets.SheetNames;
+                })
+        }
+    })
+</script>
+
+</body>
+</html>

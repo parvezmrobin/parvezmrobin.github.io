@@ -1,0 +1,28 @@
+/*  Theme Name: Blogezy - Responsive Blog Template
+    Author: Zoyothemes
+    Version: 1.0.0
+    File Description: Default color file of the template
+*/
+
+.widget-title:after {
+    border-bottom: 1px solid #0db3e3;
+}
+
+.quote-post .blockquote {
+    border: 2px solid #0db3e3;
+}
+
+.quote-post .blockquote:before,.related-post .post-header a:hover,.media-heading a:hover,.widget ul li a:hover,
+.widget ol li a:hover,.search-button:hover,.post-meta a:hover,.post-meta a:focus,.post-title a:hover,.btn-outline-custom{
+    color: #0db3e3;
+}
+
+.link-post,.post-author-box .socials li a:hover,.tagcloud > a:hover,.post-tags a:hover,.post-tags a:focus,.btn-outline-custom.active,
+.btn-outline-custom:hover,.btn-outline-custom:active,.show>.btn-outline-custom.dropdown-toggle{
+    background-color: #0db3e3;
+}
+
+.widget select:focus,.post-author-box .socials li a:hover,.btn-outline-custom.active,.btn-outline-custom:hover,
+.btn-outline-custom:active,.show>.btn-outline-custom.dropdown-toggle,.btn-outline-custom{
+    border-color: #0db3e3;
+}
