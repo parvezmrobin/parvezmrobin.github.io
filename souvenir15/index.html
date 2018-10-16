@@ -32,10 +32,14 @@
             </div>
             <div style="min-height: 25vw; background-color: #002B36; color: #839496; font-family: 'Ubuntu', Consolas, monospace">
                 <p class="lead pl-3">
-                    <span class="text-info" style="font-weight: 500">songborto@rag18reloaded</span>:~<span class="text-info">$</span>
+                    <span class="text-info" style="font-weight: 500">songborto@rag18reloaded</span>:~
+                    <span class="text-info">$</span>
                     ls disciplines
                 </p>
-                <p class="pl-3" style="font-weight: 400" id="vm">
+                <p class="pl-3" style="font-weight: 400" id="vm" v-cloak>
+                    <span class="bg-info text-white rounded mr-3 mb-3 px-1 d-inline-block"
+                          v-if="!disciplines.length">loading...</span>
+
                     <a v-for="discipline in disciplines" :href="'discipline.html?name=' + discipline">
                         <span class="bg-info text-white rounded mr-3 mb-3 px-1 d-inline-block">{{discipline}}</span>
                     </a>

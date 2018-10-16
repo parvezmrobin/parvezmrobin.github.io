@@ -12,13 +12,13 @@
 </head>
 <body style="background-color: black">
 
-<div class="container" id="vm">
+<div class="container" id="vm" v-cloak>
     <h1 class="pt-4 text-center" style="font-family: cursive">
         <a href="index.html">Rag 18 Reloaded</a> <span class="text-white">-</span>
         <a :href="'discipline.html?name=' + discipline">{{discipline}}</a>
     </h1>
 
-    <div class="col-md-6 offset-md-2 py-5">
+    <div class="col-md-6 offset-md-3 py-5">
         <table class="table table-striped">
             <tbody>
             <tr v-for="(val, key) in student" class="">
