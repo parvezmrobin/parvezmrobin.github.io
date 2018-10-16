@@ -19,6 +19,15 @@
     </h1>
 
     <div class="col-md-6 offset-md-3 py-5">
+        <div class="row d-block">
+            <div class="col">
+                <button class="btn btn-outline-primary" v-on:click="prev">Prev</button>
+
+                <button class="btn btn-outline-primary float-right"  v-on:click="next">Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3">
         <table class="table table-striped">
             <tbody>
             <tr v-for="(val, key) in student" class="">
@@ -48,9 +57,11 @@
     new Vue({
         el: '#vm',
         data: {
+            sheet: null,
             student: {},
             id: '',
             discipline: '',
+            i: -1
         },
 
         methods: {
@@ -68,13 +79,25 @@
                 // jsonSheets = _jsonSheets;
                 // csvSheets = _csvSheets;
                 console.log(_jsonSheets);
-                const sheet = _jsonSheets[this.discipline];
-                for (const student of sheet) {
+                this.sheet = _jsonSheets[this.discipline];
+                for (let i = 0; i < this.sheet.length; i++) {
+                    const student = this.sheet[i];
                     if (student["Student ID"] === this.id) {
                         this.student = student;
+                        this.i = i;
                         break;
                     }
                 }
+            },
+            prev: function () {
+                this.i--;
+                this.i = (this.i + this.sheet.length) % this.sheet.length;
+                this.student = this.sheet[this.i];
+            },
+            next: function () {
+                this.i++;
+                this.i %= this.sheet.length;
+                this.student = this.sheet[this.i];
             }
         },
 

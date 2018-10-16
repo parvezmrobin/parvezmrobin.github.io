@@ -13,12 +13,13 @@
     <style>
         div.img-container {
             box-shadow: 25px 25px 50px 0 black inset, -25px -25px 50px 0 black inset;
-            background: url(/images/souvenir/songborto.png) bottom; height: 50vh;
+            background: url(/images/souvenir/songborto.png) bottom;
+            height: 50vh;
         }
     </style>
 </head>
 <body style="background-color: #000;">
-<div class="container">
+<div class="container" id="vm" v-cloak>
     <div class="row">
         <div class="col img-container">
             <div class="row align-items-start justify-content-center" style="height: 100%;">
@@ -28,8 +29,12 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center" id="vm" v-cloak>
-
+    <div class="row justify-content-center">
+        <div class="container">
+            <div class="col">
+                <h3 class="text-center text-white border-bottom pb-2">{{discipline}} Discipline</h3>
+            </div>
+        </div>
         <span v-if="!students.length" class="bg-primary m-2 px-2 py-1 rounded text-center text-white lead">
             <strong>loading...</strong>
         </span>
