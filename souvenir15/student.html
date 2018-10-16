@@ -19,10 +19,10 @@
     </h1>
 
     <div class="col-md-6 offset-md-3 py-5">
-        <div class="row d-block">
-            <div class="col">
-                <button class="btn btn-outline-primary" v-on:click="prev">Prev</button>
-
+        <div class="row">
+            <div class="col d-block text-center">
+                <button class="btn btn-outline-primary float-left" v-on:click="prev">Prev</button>
+                <button class="btn btn-info float-lg-none" onclick="window.print()">Print</button>
                 <button class="btn btn-outline-primary float-right"  v-on:click="next">Next</button>
             </div>
         </div>
