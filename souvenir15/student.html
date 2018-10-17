@@ -7,18 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/souvenir.css">
 
     <title>Student Info</title>
-
-    <style>
-        [v-cloak] {
-            display: none;
-        }
-    </style>
 </head>
 <body style="background-color: black">
 
 <div class="container" id="vm" v-cloak>
+
+    <div class="row" v-if="!sheet">
+        <div class="container">
+            <div class="row">
+                <div class="text-center">
+                    <h2>Creative Animated Loading icon in HTML5 CSS3</h2>
+                </div>
+                <div class="animationload">
+                    <div class="osahanloading"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h1 class="pt-4 text-center" style="font-family: cursive">
         <a href="index.html">Rag 18 Reloaded</a> <span class="text-white">-</span>
         <a :href="'discipline.html?name=' + discipline">{{discipline}}</a>
@@ -29,7 +38,7 @@
             <div class="col d-block text-center">
                 <button class="btn btn-outline-primary float-left" v-on:click="prev">Prev</button>
                 <button class="btn btn-info float-lg-none" onclick="window.print()">Print</button>
-                <button class="btn btn-outline-primary float-right"  v-on:click="next">Next</button>
+                <button class="btn btn-outline-primary float-right" v-on:click="next">Next</button>
             </div>
         </div>
     </div>

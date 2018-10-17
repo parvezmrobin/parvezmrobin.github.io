@@ -7,20 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/souvenir.css">
 
     <title>Discipline</title>
 
-    <style>
-        div.img-container {
-            box-shadow: 25px 25px 50px 0 black inset, -25px -25px 50px 0 black inset;
-            background: url(/images/souvenir/songborto.png) bottom;
-            height: 50vh;
-        }
-
-         [v-cloak] {
-             display: none;
-         }
-    </style>
 </head>
 <body style="background-color: #000;">
 <div class="container" id="vm" v-cloak>
@@ -39,9 +29,19 @@
                 <h3 class="text-center text-white border-bottom pb-2">{{discipline}} Discipline</h3>
             </div>
         </div>
-        <span v-if="!students.length" class="bg-primary m-2 px-2 py-1 rounded text-center text-white lead">
-            <strong>loading...</strong>
-        </span>
+
+        <div class="row" v-if="!students.length">
+            <div class="container">
+                <div class="row">
+                    <div class="text-center">
+                        <h2>Creative Animated Loading icon in HTML5 CSS3</h2>
+                    </div>
+                    <div class="animationload">
+                        <div class="osahanloading"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <span class="bg-primary m-1 px-1 rounded" v-for="student in students" style="text-transform: capitalize;">
             <a :href="'student.html?discipline=' + discipline + '&id=' + student['Student ID']" class="text-white">
