@@ -2,10 +2,17 @@
 
 body {
   @include body-font;
-  font-size: 1.125rem;
   padding-top: 56px;
-  color: $gray-700;
-  background-color: honeydew;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $gray-900;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+body>div.container-fluid{
+  transition: background-color 5s;
 }
 
 @media (min-width: 992px) {

@@ -3,10 +3,17 @@
 @import url("https://fonts.googleapis.com/css?family=Rancho|Overlock:400,400i,700,700i,900,900i|Arima+Madurai");
 body {
   font-family: 'Overlock', serif;
-  font-size: 1.125rem;
   padding-top: 56px;
-  color: #495057;
-  background-color: honeydew;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #212529;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+body > div.container-fluid {
+  transition: background-color 5s;
 }
 
 @media (min-width: 992px) {
@@ -214,6 +221,7 @@ section.resume-section {
 .name {
   font-family: 'Rancho', cursive;
   font-size: 5rem;
+  font-weight: 500;
 }
 
 .address {

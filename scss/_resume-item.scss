@@ -28,6 +28,7 @@ section.resume-section {
 .name{
   @include title-font;
   font-size: 5rem;
+  font-weight: 500;
 }
 
 .address {
