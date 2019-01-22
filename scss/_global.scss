@@ -114,13 +114,21 @@ h4 {
   padding-bottom: .75rem;
 }
 
+.highlight{
+  padding: $skill-base-spacing*2;
+  border-radius: $skill-base-spacing;
+  transition: background-color .75s;
+}
+
+.highlight:hover{
+  background-color: transparentize($cyan, .8);
+}
+
 .list-skill {
   .row .row {
-    padding: $skill-base-spacing*2;
-    border-radius: $skill-base-spacing;
-    transition: background-color 1s;
+    @extend .highlight;
     &:hover {
-      background-color: transparentize($cyan, .8);
+      @extend .highlight;
     }
   }
 }

@@ -109,13 +109,13 @@ h4 {
   padding-bottom: .75rem;
 }
 
-.list-skill .row .row {
+.highlight, .list-skill .row .row, .list-skill .row .row:hover {
   padding: 0.25rem;
   border-radius: 0.125rem;
-  transition: background-color 1s;
+  transition: background-color .75s;
 }
 
-.list-skill .row .row:hover {
+.highlight:hover, .list-skill .row .row:hover {
   background-color: rgba(23, 162, 184, 0.2);
 }
 
@@ -242,6 +242,16 @@ section.resume-section {
   color: #BD5D38 !important;
 }
 
+.small.md {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .small.md {
+    font-size: 100%;
+  }
+}
+
 a {
   color: #004953;
 }
@@ -267,6 +277,10 @@ a:hover, a:focus, a:active {
 .carousel p {
   color: darkslategray;
   min-height: 5rem;
+}
+
+ul.carousel-indicators li {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {

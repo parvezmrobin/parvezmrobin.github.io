@@ -10,6 +10,16 @@
   color: $orange !important;
 }
 
+.small.md{
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .small.md {
+    font-size: 100%;
+  }
+}
+
 a {
   color: $primary;
   &:hover,
@@ -37,6 +47,10 @@ a {
 .carousel p {
   color: darkslategray;
   min-height: 5rem;
+}
+
+ul.carousel-indicators li {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
