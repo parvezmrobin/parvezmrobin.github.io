@@ -47,10 +47,10 @@
             <tbody>
             <tr v-for="(val, key) in student" class="">
                 <td class="bg-white text-primary"><strong>{{key}}</strong></td>
-                <td v-if="key === 'Photo'" class="text-white">
+                <td v-if="key === 'Photo'">
                     <a v-bind:href="val" target="_blank">View Photo</a>
                 </td>
-                <td v-else>{{val}}</td>
+                <td class="text-white" v-else>{{val}}</td>
             </tr>
             </tbody>
         </table>
