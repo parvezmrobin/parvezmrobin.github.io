@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -47,7 +47,10 @@
             <tbody>
             <tr v-for="(val, key) in student" class="">
                 <td class="bg-white text-primary"><strong>{{key}}</strong></td>
-                <td class="text-white">{{val}}</td>
+                <td v-if="key === 'Photo'" class="text-white">
+                    <a v-bind:href="val" target="_blank">{{val}}</a>
+                </td>
+                <td v-else>{{val}}</td>
             </tr>
             </tbody>
         </table>
