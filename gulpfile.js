@@ -77,7 +77,12 @@ gulp.task('vendor', function () {
 
     gulp.src([
         './node_modules/axios/dist/*.js'
-    ]).pipe(gulp.dest('./vendor/axios'))
+    ]).pipe(gulp.dest('./vendor/axios'));
+
+
+    gulp.src([
+        './node_modules/particles.js/*.js'
+    ]).pipe(gulp.dest('./vendor/particles'));
 });
 
 // Compile SCSS

@@ -5,14 +5,10 @@ body {
   padding-top: 56px;
   font-size: 1.125rem;
   font-weight: 600;
-  color: $gray-900;
+  color: $gray-200;
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
-}
-
-body>div.container-fluid{
-  transition: background-color 5s;
 }
 
 @media (min-width: 992px) {
@@ -32,7 +28,7 @@ h6 {
   @include subtitle-font;
   font-weight: 700;
   text-transform: uppercase;
-  color: $gray-800;
+  color: $white;
 }
 
 h1 {
@@ -45,7 +41,7 @@ h2 {
 }
 
 h3 {
-  color: $secondary !important;
+  color: $blue !important;
   font-size: 1.5rem;
 }
 
@@ -139,8 +135,10 @@ h4 {
 .alert-heading + div {
   i {
     background-color: $cyan;
+    border: 1px solid whitesmoke;
     border-radius: .125rem;
     padding: .125rem;
+    margin-right: .125rem;
     color: whitesmoke;
     font-size: 1.125rem;
   }

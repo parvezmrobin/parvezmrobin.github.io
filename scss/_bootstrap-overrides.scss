@@ -21,11 +21,10 @@
 }
 
 a {
-  color: $primary;
   &:hover,
   &:focus,
   &:active {
-    color: darken($primary, 15%);
+    color: lighten($secondary, 10%);
   }
 }
 
@@ -45,7 +44,7 @@ a {
 }
 
 .carousel p {
-  color: darkslategray;
+  color: lighten($cyan, 15%);
   min-height: 5rem;
 }
 
