@@ -10,7 +10,7 @@
   color: $orange !important;
 }
 
-.small.md{
+.small.md {
   font-weight: bold;
 }
 
@@ -41,11 +41,11 @@ a {
 .carousel {
   background-color: transparentize($cyan, .8);
   border-radius: .25rem;
-}
 
-.carousel p {
-  color: lighten($cyan, 15%);
-  min-height: 5rem;
+  p {
+    color: $gray-400;
+    min-height: 5rem;
+  }
 }
 
 ul.carousel-indicators li {
@@ -60,6 +60,10 @@ ul.carousel-indicators li {
 
 .carousel-control-next, .carousel-control-prev {
   width: 3rem;
+  color: #fff;
+  text-decoration: none;
+  outline: 0;
+  opacity: .9;
 }
 
 .carousel-indicators li {
@@ -74,7 +78,7 @@ ul.carousel-indicators li {
   border-radius: 100%;
   padding: 5px;
   box-shadow: 0 0 8px $secondary;
-  background-color: transparentize($cyan, .6);
+  background-color: $cyan;
 }
 
 //endregion

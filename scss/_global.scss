@@ -4,7 +4,6 @@ body {
   @include body-font;
   padding-top: 56px;
   font-size: 1.125rem;
-  font-weight: 600;
   color: $gray-200;
   background-position: center center;
   background-attachment: fixed;
@@ -41,7 +40,7 @@ h2 {
 }
 
 h3 {
-  color: $blue !important;
+  color: $info;
   font-size: 1.5rem;
 }
 

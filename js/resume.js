@@ -28,7 +28,7 @@
     var config = {
         particles: {
             number: {
-                value: 80,
+                value: 50,
                 density: {
                     enable: true,
                     value_area: 800
@@ -99,7 +99,7 @@
             events: {
                 onhover: {
                     enable: true,
-                    mode: 'grab'
+                    mode: 'repulse'
                 },
                 onclick: {
                     enable: true,
@@ -122,7 +122,7 @@
                     speed: 3
                 },
                 repulse: {
-                    distance: 200,
+                    distance: 150,
                     duration: 0.4
                 },
                 push: {
@@ -135,10 +135,6 @@
         },
         retina_detect: true
     };
-
-    if (Math.random() > .5) {
-        config.interactivity.events.onhover.mode = "repulse";
-    }
 
     particlesJS('background', config);
 

@@ -5,7 +5,6 @@ body {
   font-family: 'Overlock', serif;
   padding-top: 56px;
   font-size: 1.125rem;
-  font-weight: 600;
   color: #e9ecef;
   background-position: center center;
   background-attachment: fixed;
@@ -41,7 +40,7 @@ h2 {
 }
 
 h3 {
-  color: #007bff !important;
+  color: #17a2b8;
   font-size: 1.5rem;
 }
 
@@ -152,6 +151,15 @@ b {
   font-family: 'Arima Madurai', cursive;
   font-weight: 600;
   text-transform: uppercase;
+  color: #f8f9fa;
+}
+
+#sideNav .navbar-nav .nav-item .nav-link:hover {
+  color: #36cee6;
+}
+
+#sideNav .navbar-nav .nav-item .nav-link.active {
+  color: #17a2b8;
 }
 
 @media (min-width: 992px) {
@@ -270,7 +278,7 @@ a:hover, a:focus, a:active {
 }
 
 .carousel p {
-  color: #36cee6;
+  color: #ced4da;
   min-height: 5rem;
 }
 
@@ -286,6 +294,10 @@ ul.carousel-indicators li {
 
 .carousel-control-next, .carousel-control-prev {
   width: 3rem;
+  color: #fff;
+  text-decoration: none;
+  outline: 0;
+  opacity: .9;
 }
 
 .carousel-indicators li {
@@ -300,5 +312,5 @@ ul.carousel-indicators li {
   border-radius: 100%;
   padding: 5px;
   box-shadow: 0 0 8px #007686;
-  background-color: rgba(23, 162, 184, 0.4);
+  background-color: #17a2b8;
 }
