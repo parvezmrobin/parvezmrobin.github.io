@@ -172,3 +172,19 @@ b {
   font-weight: bolder;
 }
 //endregion
+
+/* ---- particles.js container ---- */
+canvas {
+  display: block;
+  vertical-align: bottom;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #004953;
+  z-index: -1;
+}

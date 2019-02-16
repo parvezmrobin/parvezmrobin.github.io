@@ -1,4 +1,6 @@
 #sideNav {
+  background-color: rgba(0, 96, 112, 0.73);
+
   .navbar-brand {
   }
 
@@ -8,9 +10,10 @@
     text-transform: uppercase;
     color: $gray-100;
 
-    &:hover{
+    &:hover {
       color: lighten($info, 15%);
     }
+
     &.active {
       color: $info;
     }
@@ -21,7 +24,6 @@
   #sideNav {
     text-align: center;
     position: fixed;
-    background-color: transparent !important;
     top: 0;
     left: 0;
 
