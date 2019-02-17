@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -27,10 +27,25 @@
         .card {
             min-width: var(--breakpoint-sm);
         }
+
+        canvas {
+            display: block;
+            vertical-align: bottom;
+        }
+
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
 <div class="container">
+    <div id="background" v-bind:style="bg"></div>
     <div class="d-flex align-items-center justify-content-center" id="content">
         <div class="card bg-info text-white">
             <div class="card-body">
@@ -63,14 +78,16 @@
 </div>
 
 <script src="../vendor/vue/vue.js"></script>
+<script src="../vendor/particles/particles.js"></script>
 
 <script>
     new Vue({
-        el: '#content',
+        el: '.container',
         data: function () {
             return {
                 hex: '',
                 rgb: '',
+                bg: {backgroundColor: '#004953'}
             }
         },
         methods: {
@@ -116,6 +133,8 @@
                 } else {
                     this.rgb = `rgb(${r}, ${g}, ${b})`;
                 }
+
+                this.bg.backgroundColor = `rgb(${r}, ${g}, ${b})`;
             },
             toHex: function () {
                 const rgb = this.rgb.trim();
@@ -138,20 +157,135 @@
                 const bStr = this.rgb.substring(offset, end);
                 const b = parseInt(bStr).toString(16).padStart(2, '0');
                 let a;
+                const hex = `#${r}${g}${b}`;
                 if (isRgba) {
                     offset = end + 1;
                     end = this.rgb.indexOf(')', offset);
                     const aStr = this.rgb.substring(offset, end);
                     a = Math.round(parseFloat(aStr) * 255).toString(16).padStart(2, '0');
-                    this.hex = `#${r}${g}${b}${a}`;
+                    this.hex = hex + a;
                 } else {
-                    this.hex = `#${r}${g}${b}`;
+                    this.hex = hex;
                 }
-                console.log(rStr, gStr, bStr, a);
-
+                this.bg.backgroundColor = hex;
             }
         }
     })
+</script>
+
+<script>
+    var config = {
+        particles: {
+            number: {
+                value: 50,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: '#ffffff'
+            },
+            shape: {
+                type: 'circle',
+                stroke: {
+                    width: 0,
+                    color: '#000000'
+                },
+                polygon: {
+                    nb_sides: 5
+                },
+                image: {
+                    src: 'img/github.svg',
+                    width: 100,
+                    height: 100
+                }
+            },
+            opacity: {
+                value: 0.5,
+                random: false,
+                anim: {
+                    enable: false,
+                    speed: 1,
+                    opacity_min: 0.1,
+                    sync: false
+                }
+            },
+            size: {
+                value: 3,
+                random: true,
+                anim: {
+                    enable: false,
+                    speed: 40,
+                    size_min: 0.1,
+                    sync: false
+                }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#ffffff',
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 6,
+                direction: 'none',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: false,
+                attract: {
+                    enable: false,
+                    rotateX: 600,
+                    rotateY: 1200
+                }
+            }
+        },
+        interactivity: {
+            detect_on: 'window',
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: 'repulse'
+                },
+                onclick: {
+                    enable: true,
+                    mode: 'push'
+                },
+                resize: true
+            },
+            modes: {
+                grab: {
+                    distance: 400,
+                    line_linked: {
+                        opacity: 1
+                    }
+                },
+                bubble: {
+                    distance: 400,
+                    size: 40,
+                    duration: 2,
+                    opacity: 8,
+                    speed: 3
+                },
+                repulse: {
+                    distance: 150,
+                    duration: 0.4
+                },
+                push: {
+                    particles_nb: 4
+                },
+                remove: {
+                    particles_nb: 2
+                }
+            }
+        },
+        retina_detect: true
+    };
+
+    particlesJS('background', config);
 </script>
 </body>
 </html>
