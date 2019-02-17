@@ -750,21 +750,25 @@
 <script src="js/resume.min.js"></script>
 
 <script>
-    anims = ['rubberBand', 'swing', 'tada'];
-    icons = ['fa-facebook', 'fa-twitter', 'fa-linkedin', 'fa-github'];
+    const animationNames = ['rubberBand', 'swing', 'tada'];
+    const $iconList = $('.list-social-icons').children();
 
-    function animate(x) {
-        const i = Math.floor(Math.random() * 4);
-        const $li = $('.list-social-icons').children();
-        $($li[i]).removeClass(x + ' animated').addClass(x + ' animated')
+    function animate(animationName) {
+        let i = Math.floor(Math.random() * 4);
+        let $iconElement = $($iconList[i]);
+        while ($iconElement.is(':hover')) {
+            i = Math.floor(Math.random() * 4);
+            $iconElement = $($iconList[i]);
+        }
+        $iconElement.removeClass(animationName + ' animated').addClass(animationName + ' animated')
             .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass(x + ' animated');
+                $(this).removeClass(animationName + ' animated');
             });
     }
 
     setInterval(() => {
         const i = Math.floor(Math.random() * 3);
-        animate(anims[i]);
+        animate(animationNames[i]);
     }, 1000)
 </script>
 

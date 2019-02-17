@@ -74,11 +74,9 @@ gulp.task('vendor', function () {
         './node_modules/js-xlsx/dist/*.js'
     ]).pipe(gulp.dest('./vendor/xlsx'));
 
-
     gulp.src([
         './node_modules/axios/dist/*.js'
     ]).pipe(gulp.dest('./vendor/axios'));
-
 
     gulp.src([
         './node_modules/particles.js/*.js'
