@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="https://parvezmrobin.github.io">
+    <meta name="description" content="HEX to RGBA, RGB and R G B Calculator.">
+    <meta name="keywords" content="hex, rgb, rgba, calculator, generator, converter">
+
+    <title>Hex to RGB Converter | Parvez M Robin</title>
+
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
+
+    <style>
+        #content {
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="d-flex align-items-center justify-content-center" id="content">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h3 class="card-title">Hex to RGB</h3>
+                <form @submit.prevent="toRGB" action="">
+                    <div class="form-group row">
+                        <label class="col-form-label col" for="hex">Hex Value</label>
+                        <div class="col-6">
+                            <input type="text" id="hex" v-model="hex" class="form-control">
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-secondary">Convert</button>
+                        </div>
+                    </div>
+                </form>
+                <form @submit.prevent="toHex" action="">
+                    <div class="form-group row">
+                        <label class="col-form-label col" for="rgb">RGB Value</label>
+                        <div class="col-6">
+                            <input type="text" id="rgb" v-model="rgb" class="form-control">
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-secondary">Convert</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../vendor/vue/vue.js"></script>
+
+<script>
+    new Vue({
+        el: '#content',
+        data: function () {
+            return {
+                hex: '',
+                rgb: '',
+            }
+        },
+        methods: {
+            toRGB: function () {
+                let hex;
+                if (this.hex[0] === '#') {
+                    hex = this.hex.substr(1);
+                }else {
+                    hex = this.hex;
+                }
+
+                let r, g, b;
+                if (hex.length === 3){
+                    r = parseInt(hex[0] + hex[0], 16);
+                    g = parseInt(hex[1] + hex[1], 16);
+                    b = parseInt(hex[2] + hex[2], 16);
+                } else if (hex.length === 6) {
+                    r = parseInt(hex.substr(0, 2), 16);
+                    g = parseInt(hex.substr(2, 2), 16);
+                    b = parseInt(hex.substr(4, 2), 16);
+                }
+                if (!(r && g && b)) {
+                    alert("Invalid hex code");
+                    return;
+                }
+
+                this.rgb = `rgb(${r}, ${g}, ${b})`;
+            },
+            toHex: function () {
+                let offset = this.rgb.indexOf('(') + 1;
+                let end = this.rgb.indexOf(',');
+                const rStr = this.rgb.substring(offset, end);
+                const r = parseInt(rStr);
+                offset = end + 1;
+                end = this.rgb.indexOf(',', offset);
+                const gStr = this.rgb.substring(offset, end);
+                const g = parseInt(gStr);
+                offset = end + 1;
+                end = this.rgb.indexOf(')', offset);
+                const bStr = this.rgb.substring(offset, end);
+                const b = parseInt(bStr);
+                console.log(rStr, gStr, bStr);
+                this.hex = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+            }
+        }
+    })
+</script>
+</body>
+</html>
