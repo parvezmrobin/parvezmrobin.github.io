@@ -23,9 +23,17 @@
         #content {
             min-height: 100vh;
         }
+        
+        @media screen and (min-width: 576px) {
+            .card {
+                min-width: 576px;
+            }
+        }
 
-        .card {
-            min-width: var(--breakpoint-sm);
+        @media screen and (min-width: 992px) {
+            .card {
+                min-width: 768px;
+            }
         }
 
         canvas {
@@ -41,6 +49,11 @@
             height: 100%;
             z-index: -1;
         }
+
+        .invalid-feedback{
+            font-size: .875rem;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -52,22 +65,26 @@
                 <h3 class="card-title">Hex to RGB</h3>
                 <form @submit.prevent="toRGB" action="">
                     <div class="form-group row">
-                        <label class="col-form-label col" for="hex">Hex Value</label>
-                        <div class="col-7">
-                            <input type="text" id="hex" v-model="hex" class="form-control">
+                        <label class="col-form-label col-12 col-md" for="hex">Hex Value</label>
+                        <div class="col-12 col-md-7 col-lg-8">
+                            <input type="text" id="hex" v-model="hex" class="form-control"
+                                   placeholder="e.g. #fff, #004953, #004953bb">
+                            <div class="invalid-feedback" v-text="error.hex"></div>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-md">
                             <button type="submit" class="btn btn-primary">Convert</button>
                         </div>
                     </div>
                 </form>
                 <form @submit.prevent="toHex" action="">
                     <div class="form-group row">
-                        <label class="col-form-label col" for="rgb">RGB Value</label>
-                        <div class="col-7">
-                            <input type="text" id="rgb" v-model="rgb" class="form-control">
+                        <label class="col-form-label col-12 col-md" for="rgb">RGB Value</label>
+                        <div class="col-12 col-md-7 col-lg-8">
+                            <input type="text" id="rgb" v-model="rgb" class="form-control"
+                                   placeholder="e.g. rgb(10, 20, 30), rgba(10, 20, 10, .5)">
+                            <div class="invalid-feedback" v-text="error.rgb"></div>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-md">
                             <button type="submit" class="btn btn-primary">Convert</button>
                         </div>
                     </div>
@@ -77,6 +94,7 @@
     </div>
 </div>
 
+<script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/vue/vue.js"></script>
 <script src="../vendor/particles/particles.js"></script>
 
@@ -87,17 +105,42 @@
             return {
                 hex: '',
                 rgb: '',
-                bg: {backgroundColor: '#004953'}
+                bg: {backgroundColor: '#004953'},
+                error: {
+                    rgb: '',
+                    hex: '',
+                },
             }
         },
         methods: {
-            toRGB: function () {
+            cleanUp: function () {
+                $('.is-invalid').removeClass('is-invalid');
+            },
+            validateHex1: function (hex) {
+                hex.split('').forEach(ch => {
+                    if (!((ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F'))) {
+                        throw new Error('Invalid character ' + ch);
+                    }
+                });
+            }, validateHex2: function (r, g, b, a) {
+                if (Number.isNaN(r) || r > 255) {
+                    throw new Error('R is invalid');
+                } else if (Number.isNaN(g) || g > 255) {
+                    throw new Error('G is invalid');
+                } else if (Number.isNaN(b) || b > 255) {
+                    throw new Error('B is invalid');
+                } else if (Number.isNaN(a) || a > 255) {
+                    throw new Error('A is invalid');
+                }
+            }, convertHex: function () {
                 let hex;
                 if (this.hex[0] === '#') {
                     hex = this.hex.substr(1).trim();
                 } else {
                     hex = this.hex.trim();
                 }
+
+                this.validateHex1(hex);
 
                 let r, g, b, a;
                 if (hex.length === 3 || hex.length === 4) {
@@ -115,12 +158,12 @@
                     if (hex.length === 8) {
                         a = parseInt(hex.substr(6, 2), 16);
                     }
+                } else {
+                    throw new Error('Length of color code must be either of 3, 4, 6 or 8');
                 }
-                if (!(r && g && b)) {
-                    alert("Invalid hex code");
-                    return;
-                }
+                this.validateHex2(r, g, b, a);
 
+                let rgb;
                 if (a !== undefined) {
                     a = (a / 255);
                     if (a === 0 || a === 1) {
@@ -129,45 +172,81 @@
                         a = a.toFixed(3);
                     }
 
-                    this.rgb = `rgba(${r}, ${g}, ${b}, ${a})`;
+                    rgb = `rgba(${r}, ${g}, ${b}, ${a})`;
                 } else {
-                    this.rgb = `rgb(${r}, ${g}, ${b})`;
+                    rgb = `rgb(${r}, ${g}, ${b})`;
                 }
 
-                this.bg.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                return [rgb, `rgb(${r}, ${g}, ${b})`];
             },
-            toHex: function () {
-                const rgb = this.rgb.trim();
-                let offset = rgb.indexOf('(') + 1;
-                let end = this.rgb.indexOf(',');
-                const rStr = this.rgb.substring(offset, end);
-                const r = parseInt(rStr).toString(16).padStart(2, '0');
-                offset = end + 1;
-                end = this.rgb.indexOf(',', offset);
-                const gStr = this.rgb.substring(offset, end);
-                const g = parseInt(gStr).toString(16).padStart(2, '0');
-                offset = end + 1;
+            toRGB: function () {
+                this.cleanUp();
 
-                const isRgba = rgb.startsWith('rgba');
-                if (isRgba) {
-                    end = this.rgb.indexOf(',', offset);
-                } else {
-                    end = this.rgb.indexOf(')', offset);
+                try {
+                    [this.rgb, this.bg.backgroundColor] = this.convertHex();
+                } catch (e) {
+                    this.error.hex = e.message;
+                    $('#hex').addClass('is-invalid');
                 }
-                const bStr = this.rgb.substring(offset, end);
-                const b = parseInt(bStr).toString(16).padStart(2, '0');
-                let a;
-                const hex = `#${r}${g}${b}`;
-                if (isRgba) {
+            },
+            validateRGB: function (r, g, b) {
+                if (Number.isNaN(r) || r < 0 || r > 255) {
+                    throw new Error('R must be a valid number in range [0, 255]');
+                } else if (Number.isNaN(g) || g < 0 || g > 255) {
+                    throw new Error('G must be a valid number in range [0, 255]');
+                } else if (Number.isNaN(b) || b < 0 || b > 255) {
+                    throw new Error('B must be a valid number in range [0, 255]');
+                }
+            }, validateAlpha: function (a) {
+                if (Number.isNaN(a) || a < 0 || a > 255) {
+                    throw  new Error('A must be a valid number in range [0, 1]');
+                }
+            }, toHex: function () {
+                this.cleanUp();
+
+                try {
+                    let error;
+                    const rgb = this.rgb.trim();
+                    const isRgba = rgb.startsWith('rgba');
+
+                    let offset = rgb.indexOf('(') + 1;
+                    let end = this.rgb.indexOf(',');
+                    const r = parseInt(this.rgb.substring(offset, end));
+
                     offset = end + 1;
-                    end = this.rgb.indexOf(')', offset);
-                    const aStr = this.rgb.substring(offset, end);
-                    a = Math.round(parseFloat(aStr) * 255).toString(16).padStart(2, '0');
-                    this.hex = hex + a;
-                } else {
-                    this.hex = hex;
+                    end = this.rgb.indexOf(',', offset);
+                    const g = parseInt(this.rgb.substring(offset, end));
+
+                    offset = end + 1;
+                    if (isRgba) {
+                        end = this.rgb.indexOf(',', offset);
+                    } else {
+                        end = this.rgb.indexOf(')', offset);
+                    }
+                    const b = parseInt(this.rgb.substring(offset, end));
+                    this.validateRGB(r, g, b);
+
+                    const rStr = r.toString(16).padStart(2, '0');
+                    const gStr = g.toString(16).padStart(2, '0');
+                    const bStr = b.toString(16).padStart(2, '0');
+
+                    let a;
+                    const hex = `#${rStr}${gStr}${bStr}`;
+                    if (isRgba) {
+                        offset = end + 1;
+                        end = this.rgb.indexOf(')', offset);
+                        a = Math.round(parseFloat(this.rgb.substring(offset, end)) * 255);
+                        this.validateAlpha(a);
+                        const aStr = a.toString(16).padStart(2, '0');
+                        this.hex = hex + aStr;
+                    } else {
+                        this.hex = hex;
+                    }
+                    this.bg.backgroundColor = hex;
+                } catch (e) {
+                    this.error.rgb = e.message;
+                    $('#rgb').addClass('is-invalid');
                 }
-                this.bg.backgroundColor = hex;
             }
         }
     })
