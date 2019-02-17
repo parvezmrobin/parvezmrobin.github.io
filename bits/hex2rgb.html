@@ -13,10 +13,19 @@
     <title>Hex to RGB Converter | Parvez M Robin</title>
 
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
 
     <style>
+        body {
+            font-family: 'Overlock', cursive;
+        }
+
         #content {
             min-height: 100vh;
+        }
+
+        .card {
+            min-width: var(--breakpoint-sm);
         }
     </style>
 </head>
@@ -29,22 +38,22 @@
                 <form @submit.prevent="toRGB" action="">
                     <div class="form-group row">
                         <label class="col-form-label col" for="hex">Hex Value</label>
-                        <div class="col-6">
+                        <div class="col-7">
                             <input type="text" id="hex" v-model="hex" class="form-control">
                         </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-secondary">Convert</button>
+                            <button type="submit" class="btn btn-primary">Convert</button>
                         </div>
                     </div>
                 </form>
                 <form @submit.prevent="toHex" action="">
                     <div class="form-group row">
                         <label class="col-form-label col" for="rgb">RGB Value</label>
-                        <div class="col-6">
+                        <div class="col-7">
                             <input type="text" id="rgb" v-model="rgb" class="form-control">
                         </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-secondary">Convert</button>
+                            <button type="submit" class="btn btn-primary">Convert</button>
                         </div>
                     </div>
                 </form>
@@ -68,43 +77,78 @@
             toRGB: function () {
                 let hex;
                 if (this.hex[0] === '#') {
-                    hex = this.hex.substr(1);
-                }else {
-                    hex = this.hex;
+                    hex = this.hex.substr(1).trim();
+                } else {
+                    hex = this.hex.trim();
                 }
 
-                let r, g, b;
-                if (hex.length === 3){
+                let r, g, b, a;
+                if (hex.length === 3 || hex.length === 4) {
                     r = parseInt(hex[0] + hex[0], 16);
                     g = parseInt(hex[1] + hex[1], 16);
                     b = parseInt(hex[2] + hex[2], 16);
-                } else if (hex.length === 6) {
+
+                    if (hex.length === 4) {
+                        a = parseInt(hex[3] + hex[3], 16);
+                    }
+                } else if (hex.length === 6 || hex.length === 8) {
                     r = parseInt(hex.substr(0, 2), 16);
                     g = parseInt(hex.substr(2, 2), 16);
                     b = parseInt(hex.substr(4, 2), 16);
+                    if (hex.length === 8) {
+                        a = parseInt(hex.substr(6, 2), 16);
+                    }
                 }
                 if (!(r && g && b)) {
                     alert("Invalid hex code");
                     return;
                 }
 
-                this.rgb = `rgb(${r}, ${g}, ${b})`;
+                if (a !== undefined) {
+                    a = (a / 255);
+                    if (a === 0 || a === 1) {
+                        a = a.toString();
+                    } else if (a < 1) {
+                        a = a.toFixed(3);
+                    }
+
+                    this.rgb = `rgba(${r}, ${g}, ${b}, ${a})`;
+                } else {
+                    this.rgb = `rgb(${r}, ${g}, ${b})`;
+                }
             },
             toHex: function () {
-                let offset = this.rgb.indexOf('(') + 1;
+                const rgb = this.rgb.trim();
+                let offset = rgb.indexOf('(') + 1;
                 let end = this.rgb.indexOf(',');
                 const rStr = this.rgb.substring(offset, end);
-                const r = parseInt(rStr);
+                const r = parseInt(rStr).toString(16).padStart(2, '0');
                 offset = end + 1;
                 end = this.rgb.indexOf(',', offset);
                 const gStr = this.rgb.substring(offset, end);
-                const g = parseInt(gStr);
+                const g = parseInt(gStr).toString(16).padStart(2, '0');
                 offset = end + 1;
-                end = this.rgb.indexOf(')', offset);
+
+                const isRgba = rgb.startsWith('rgba');
+                if (isRgba) {
+                    end = this.rgb.indexOf(',', offset);
+                } else {
+                    end = this.rgb.indexOf(')', offset);
+                }
                 const bStr = this.rgb.substring(offset, end);
-                const b = parseInt(bStr);
-                console.log(rStr, gStr, bStr);
-                this.hex = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+                const b = parseInt(bStr).toString(16).padStart(2, '0');
+                let a;
+                if (isRgba) {
+                    offset = end + 1;
+                    end = this.rgb.indexOf(')', offset);
+                    const aStr = this.rgb.substring(offset, end);
+                    a = Math.round(parseFloat(aStr) * 255).toString(16).padStart(2, '0');
+                    this.hex = `#${r}${g}${b}${a}`;
+                } else {
+                    this.hex = `#${r}${g}${b}`;
+                }
+                console.log(rStr, gStr, bStr, a);
+
             }
         }
     })
