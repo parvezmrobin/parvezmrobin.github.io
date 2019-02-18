@@ -81,6 +81,14 @@ gulp.task('vendor', function () {
     gulp.src([
         './node_modules/particles.js/*.js'
     ]).pipe(gulp.dest('./vendor/particles'));
+
+    gulp.src([
+        './node_modules/vue-swatches/dist/*.css'
+    ]).pipe(gulp.dest('./vendor/vue-swatches/css'));
+
+    gulp.src([
+        './node_modules/vue-swatches/dist/*.js'
+    ]).pipe(gulp.dest('./vendor/vue-swatches/js'));
 });
 
 // Compile SCSS
