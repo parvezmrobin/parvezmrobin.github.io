@@ -23,7 +23,7 @@
         #content {
             min-height: 100vh;
         }
-        
+
         @media screen and (min-width: 576px) {
             .card {
                 min-width: 576px;
@@ -50,23 +50,24 @@
             z-index: -1;
         }
 
-        .invalid-feedback{
+        .invalid-feedback {
             font-size: .875rem;
             color: black;
         }
 
-        .btn-outline-white{
-            border-color: ghostwhite;
+        .btn-outline-white {
+            border-color: white;
             background-color: transparent;
             color: white;
         }
 
-        .btn-outline-white:hover, .btn-outline-white:focus{
+        .btn-outline-white:hover, .btn-outline-white:focus {
+            border-color: silver;
             background-color: white;
             color: var(--primary);
         }
 
-        .transparent{
+        .transparent {
             opacity: .85;
         }
     </style>
@@ -138,13 +139,13 @@
                     }
                 });
             }, validateHex2: function (r, g, b, a) {
-                if (Number.isNaN(r) || r > 255) {
+                if (isNaN(r) || r > 255) {
                     throw new Error('R is invalid');
-                } else if (Number.isNaN(g) || g > 255) {
+                } else if (isNaN(g) || g > 255) {
                     throw new Error('G is invalid');
-                } else if (Number.isNaN(b) || b > 255) {
+                } else if (isNaN(b) || b > 255) {
                     throw new Error('B is invalid');
-                } else if (Number.isNaN(a) || a > 255) {
+                } else if (isNaN(a) || a > 255) {
                     throw new Error('A is invalid');
                 }
             }, convertHex: function () {
@@ -179,7 +180,9 @@
                 this.validateHex2(r, g, b, a);
 
                 let rgb;
-                if (a !== undefined) {
+                if (a === undefined) {
+                    rgb = `rgb(${r}, ${g}, ${b})`;
+                } else {
                     a = (a / 255);
                     if (a === 0 || a === 1) {
                         a = a.toString();
@@ -188,8 +191,6 @@
                     }
 
                     rgb = `rgba(${r}, ${g}, ${b}, ${a})`;
-                } else {
-                    rgb = `rgb(${r}, ${g}, ${b})`;
                 }
 
                 return [rgb, `rgb(${r}, ${g}, ${b})`];
@@ -216,41 +217,64 @@
                 if (Number.isNaN(a) || a < 0 || a > 255) {
                     throw  new Error('A must be a valid number in range [0, 1]');
                 }
+            }, validatedRGBFloatStr: function (rFloatStr, gFloatStr, bFloatStr) {
+                if (isNaN(rFloatStr)) {
+                    throw new Error("R is not a valid number")
+                } else if (isNaN(gFloatStr)) {
+                    throw new Error("G is not a valid number")
+                } else if (isNaN(bFloatStr)) {
+                    throw new Error("B is not a valid number")
+                }
+            }, validateAlphaFloatStr: function (aFloatStr) {
+                if (isNaN(aFloatStr)) {
+                    throw new Error("A is not a valid number")
+                }
+            },
+            /**
+             * @param {Number} n
+             * @returns {string}
+             */
+            pad: function (n) {
+                return n.toString(16).padStart(2, '0');
             }, toHex: function () {
                 this.cleanUp();
 
                 try {
-                    let error;
                     const rgb = this.rgb.trim();
                     const isRgba = rgb.startsWith('rgba');
 
                     let offset = rgb.indexOf('(') + 1;
                     let end = this.rgb.indexOf(',');
-                    const r = parseInt(this.rgb.substring(offset, end));
+                    const rFloatStr = this.rgb.substring(offset, end);
 
                     offset = end + 1;
                     end = this.rgb.indexOf(',', offset);
-                    const g = parseInt(this.rgb.substring(offset, end));
+                    const gFloatStr = this.rgb.substring(offset, end);
 
                     offset = end + 1;
-                    if (isRgba) {
-                        end = this.rgb.indexOf(',', offset);
-                    } else {
-                        end = this.rgb.indexOf(')', offset);
-                    }
-                    const b = parseInt(this.rgb.substring(offset, end));
+                    end = this.rgb.indexOf(isRgba ? ',' : ')', offset);
+                    const bFloatStr = this.rgb.substring(offset, end);
+
+                    this.validatedRGBFloatStr(rFloatStr, gFloatStr, bFloatStr);
+
+                    const r = Math.round(parseFloat(rFloatStr));
+                    const g = Math.round(parseFloat(gFloatStr));
+                    const b = Math.round(parseFloat(bFloatStr));
+
                     this.validateRGB(r, g, b);
 
-                    const rStr = r.toString(16).padStart(2, '0');
-                    const gStr = g.toString(16).padStart(2, '0');
-                    const bStr = b.toString(16).padStart(2, '0');
+                    const rStr = this.pad(r);
+                    const gStr = this.pad(g);
+                    const bStr = this.pad(b);
 
                     let a;
-                    const hex = `#${rStr}${gStr}${bStr}`;
+                    const hex = '#' + rStr + + gStr + bStr;
                     if (isRgba) {
                         offset = end + 1;
                         end = this.rgb.indexOf(')', offset);
-                        a = Math.round(parseFloat(this.rgb.substring(offset, end)) * 255);
+                        const aFloatStr = this.rgb.substring(offset, end);
+                        this.validateAlphaFloatStr(aFloatStr);
+                        a = Math.round(parseFloat(aFloatStr) * 255);
                         this.validateAlpha(a);
                         const aStr = a.toString(16).padStart(2, '0');
                         this.hex = hex + aStr;
@@ -268,7 +292,7 @@
 </script>
 
 <script>
-    var config = {
+    const config = {
         particles: {
             number: {
                 value: 50,
