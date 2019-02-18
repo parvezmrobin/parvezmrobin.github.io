@@ -13,6 +13,7 @@
     <title>Hex to RGB Converter | Parvez M Robin</title>
 
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../vendor/simple-line-icons/css/simple-line-icons.css">
     <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
 
     <style>
@@ -88,7 +89,10 @@
                             <div class="invalid-feedback" v-text="error.hex"></div>
                         </div>
                         <div class="col-12 col-md">
-                            <button type="submit" class="btn btn-outline-white">Convert</button>
+                            <button type="submit" class="btn btn-outline-white">
+                                <i class="icon-arrow-down-circle"></i>
+                                Convert
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -101,7 +105,10 @@
                             <div class="invalid-feedback" v-text="error.rgb"></div>
                         </div>
                         <div class="col-12 col-md">
-                            <button type="submit" class="btn btn-outline-white">Convert</button>
+                            <button type="submit" class="btn btn-outline-white">
+                                <i class="icon-arrow-up-circle"></i>
+                                Convert
+                            </button>
                         </div>
                     </div>
                 </form>
