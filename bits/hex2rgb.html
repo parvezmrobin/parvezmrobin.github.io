@@ -69,6 +69,18 @@
             color: var(--primary);
         }
 
+        .btn-outline-dark-teal {
+            border-color: #004953;
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline-dark-teal:hover, .btn-outline-dark-teal:focus {
+            border-color: #004953;
+            background-color: #004953;
+            color: white;
+        }
+
         .transparent {
             opacity: .85;
         }
@@ -96,9 +108,18 @@
                     <div class="form-group row">
                         <label class="col-form-label col-12 col-md" for="hex">Hex Value</label>
                         <div class="col-12 col-md-7 col-lg-8">
-                            <input type="text" id="hex" v-model="hex" class="form-control"
-                                   placeholder="e.g. #fff, #004953, #004953bb">
-                            <div class="invalid-feedback" v-text="error.hex"></div>
+                            <div class="input-group">
+                                <input type="text" id="hex" v-model="hex" class="form-control"
+                                       placeholder="e.g. #fff, #004953, #004953bb">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-dark-teal rounded-right"
+                                            data-toggle="tooltip" data-placement="left" title="Copy to clipboard"
+                                            @click="copyHex">
+                                        Copy
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback" v-text="error.hex"></div>
+                            </div>
                         </div>
                         <div class="col-12 col-md">
                             <button type="submit" class="btn btn-outline-white">
@@ -112,9 +133,18 @@
                     <div class="form-group row">
                         <label class="col-form-label col-12 col-md" for="rgb">RGB Value</label>
                         <div class="col-12 col-md-7 col-lg-8">
-                            <input type="text" id="rgb" v-model="rgb" class="form-control"
-                                   placeholder="e.g. rgb(10, 20, 30), rgba(10, 20, 10, .5)">
-                            <div class="invalid-feedback" v-text="error.rgb"></div>
+                            <div class="input-group">
+                                <input type="text" id="rgb" v-model="rgb" class="form-control"
+                                       placeholder="e.g. rgb(10, 20, 30), rgba(10, 20, 10, .5)">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-dark-teal rounded-right"
+                                            data-toggle="tooltip" data-placement="left" title="Copy to clipboard"
+                                            @click="copyRGB">
+                                        Copy
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback" v-text="error.rgb"></div>
+                            </div>
                         </div>
                         <div class="col-12 col-md">
                             <button type="submit" class="btn btn-outline-white">
@@ -160,11 +190,11 @@
             return {
                 hex: '',
                 rgb: '',
+                swatch: '#004953',
                 bg: {backgroundColor: '#004953'},
                 error: {
                     rgb: '',
                     hex: '',
-                    swatch: ''
                 },
             }
         },
@@ -312,7 +342,7 @@
                     const bStr = this.pad(b);
 
                     let a;
-                    const hex = '#' + rStr + +gStr + bStr;
+                    const hex = '#' + rStr + gStr + bStr;
                     if (isRgba) {
                         offset = end + 1;
                         end = this.rgb.indexOf(')', offset);
@@ -334,6 +364,14 @@
             toBoth: function () {
                 this.hex = this.swatch;
                 this.toRGB();
+            },
+            copyHex: function () {
+                $('#hex').select();
+                document.execCommand("copy");
+            },
+            copyRGB: function () {
+                $('#rgb').select();
+                document.execCommand("copy");
             }
         }
     })
