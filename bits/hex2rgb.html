@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <meta name="author" content="https://parvezmrobin.github.io">
-    <meta name="description" content="HEX to RGBA, RGB and R G B Calculator.">
+    <meta name="description" content="HEX to RGB or RGBA and RGB or RGBA to HEX Calculator.">
     <meta name="keywords" content="hex, rgb, rgba, calculator, generator, converter">
 
     <title>Hex to RGB Converter | Parvez M Robin</title>
@@ -155,7 +155,7 @@
 <script>
     new Vue({
         el: '.container',
-        components: { Swatches: VueSwatches.Swatches },
+        components: {Swatches: VueSwatches.Swatches},
         data: function () {
             return {
                 hex: '',
@@ -263,6 +263,9 @@
                 } else if (isNaN(gFloatStr)) {
                     throw new Error("G is not a valid number")
                 } else if (isNaN(bFloatStr)) {
+                    if (bFloatStr.indexOf(',') !== -1) {
+                        throw new Error("Did you mean RGBA?")
+                    }
                     throw new Error("B is not a valid number")
                 }
             }, validateAlphaFloatStr: function (aFloatStr) {
@@ -276,7 +279,8 @@
              */
             pad: function (n) {
                 return n.toString(16).padStart(2, '0');
-            }, toHex: function () {
+            },
+            toHex: function () {
                 this.cleanUp();
 
                 try {
@@ -308,7 +312,7 @@
                     const bStr = this.pad(b);
 
                     let a;
-                    const hex = '#' + rStr + + gStr + bStr;
+                    const hex = '#' + rStr + +gStr + bStr;
                     if (isRgba) {
                         offset = end + 1;
                         end = this.rgb.indexOf(')', offset);
