@@ -120,7 +120,7 @@
                 <blockquote class="blockquote">
                     <p class="text-danger">
                         <i class="fa fa-quote-left"></i>
-                        <span v-text="quote.quote"></span>
+                        <span v-html="quote.quote"></span>
                     </p>
                     <footer class="blockquote-footer text-white">
                         <cite title="Source Title" v-text="quote.author"></cite>
@@ -161,7 +161,12 @@
 </script>
 
 <script>
-    const URL = 'http://quotes.stormconsultancy.co.uk/random.json';
+    const URL = 'https://sumitgohil-random-quotes-v1.p.rapidapi.com/fetch/randomQuote';
+    const CONFIG = {
+        headers: {
+            'X-RapidAPI-Key': 'd70dcfba7cmshe8d6dbd6a679420p165234jsn9d3812629ce5'
+        }
+    };
     new Vue({
         el: '.container',
         data: function () {
@@ -178,9 +183,9 @@
               this.quote.quote = 'Loading...';
               this.quote.author = null;
 
-              axios.get(URL).then(r => {
-                  this.quote.quote = r.data.quote;
-                  this.quote.author = r.data.author;
+              axios.get(URL, CONFIG).then(r => {
+                  this.quote.quote = r.data[0].quote;
+                  this.quote.author = r.data[0].author_name;
               })
           }
         },
