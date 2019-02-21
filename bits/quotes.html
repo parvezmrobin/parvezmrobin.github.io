@@ -10,7 +10,7 @@
     <meta name="description" content="Random programming quotes">
     <meta name="keywords" content="quotes, programming, random quotes, programming quotes">
 
-    <title>Programming Quotes | Parvez M Robin</title>
+    <title>Random Quotes | Parvez M Robin</title>
 
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
@@ -33,11 +33,17 @@
             width: 100%;
         }
 
+        .blockquote p{
+            color: #361fc9;
+            font-weight: bold;
+        }
+
         @media screen and (min-width: 576px) {
             .card {
                 width: 576px;
             }
-            .blockquote{
+
+            .blockquote {
                 min-height: 10rem;
             }
         }
@@ -46,7 +52,8 @@
             .card {
                 width: 768px;
             }
-            .blockquote{
+
+            .blockquote {
                 min-height: 8rem;
             }
         }
@@ -118,7 +125,7 @@
         <div class="card bg-info transparent">
             <div class="card-body">
                 <blockquote class="blockquote">
-                    <p class="text-danger">
+                    <p>
                         <i class="fa fa-quote-left"></i>
                         <span v-html="quote.quote"></span>
                     </p>
@@ -126,10 +133,21 @@
                         <cite title="Source Title" v-text="quote.author"></cite>
                     </footer>
                 </blockquote>
-                <button class="btn btn-outline-dark-teal float-right icon-refresh" @click="reload">
-                    <i class="fa fa-refresh pr-1"></i>
-                    Next
-                </button>
+                <div class="container-fluid p-0 d-flex align-items-center justify-content-between">
+
+                    <div class="fb-share-button" data-href="https://parvezmrobin.github.io/bits/quotes.html"
+                         data-layout="button" data-size="large" data-mobile-iframe="true">
+                        <a target="_blank"
+                           href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparvezmrobin.github.io%2Fbits%2Fquotes.html&amp;src=sdkpreparse"
+                           class="fb-xfbml-parse-ignore">Share</a>
+                    </div>
+
+                    <button class="btn btn-outline-dark-teal float-right" @click="reload">
+                        <i class="fa fa-refresh pr-1"></i>
+                        Next
+                    </button>
+
+                </div>
             </div>
         </div>
     </div>
@@ -145,6 +163,9 @@
         </div>
     </nav>
 </footer>
+
+<div id="fb-root"></div>
+<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
 
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -179,15 +200,15 @@
             }
         },
         methods: {
-          reload: function () {
-              this.quote.quote = 'Loading...';
-              this.quote.author = null;
+            reload: function () {
+                this.quote.quote = 'Loading...';
+                this.quote.author = null;
 
-              axios.get(URL, CONFIG).then(r => {
-                  this.quote.quote = r.data[0].quote;
-                  this.quote.author = r.data[0].author_name;
-              })
-          }
+                axios.get(URL, CONFIG).then(r => {
+                    this.quote.quote = r.data[0].quote;
+                    this.quote.author = r.data[0].author_name;
+                })
+            }
         },
         mounted() {
             this.reload();
