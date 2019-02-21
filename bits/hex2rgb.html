@@ -84,6 +84,16 @@
         .transparent {
             opacity: .85;
         }
+
+        footer .navbar-brand{
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 576px) {
+            footer .navbar-brand{
+                font-size: 1.125rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -159,14 +169,14 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<footer class="container-fluid">
     <nav class="navbar fixed-bottom bg-primary transparent text-white">
         <div class="mx-auto text-center">
             &copy; Created and maintained by
             <a class="navbar-brand text-warning" href="https://parvezmrobin.github.io">Parvez M Robin</a>
         </div>
     </nav>
-</div>
+</footer>
 
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
