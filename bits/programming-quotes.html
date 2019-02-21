@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="https://parvezmrobin.github.io">
+    <meta name="description" content="Random programming quotes">
+    <meta name="keywords" content="quotes, programming, random quotes, programming quotes">
+
+    <title>Programming Quotes | Parvez M Robin</title>
+
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Overlock', cursive;
+        }
+
+        #content {
+            min-height: 100vh;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .card {
+            width: 100%;
+        }
+
+        @media screen and (min-width: 576px) {
+            .card {
+                width: 576px;
+            }
+            .blockquote{
+                min-height: 10rem;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .card {
+                width: 768px;
+            }
+            .blockquote{
+                min-height: 8rem;
+            }
+        }
+
+        canvas {
+            display: block;
+            vertical-align: bottom;
+        }
+
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .invalid-feedback {
+            font-size: .875rem;
+            color: black;
+        }
+
+        .btn-outline-white {
+            border-color: white;
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline-white:hover, .btn-outline-white:focus {
+            border-color: silver;
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .btn-outline-dark-teal {
+            border-color: #004953;
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline-dark-teal:hover, .btn-outline-dark-teal:focus {
+            border-color: #004953;
+            background-color: #004953;
+            color: white;
+        }
+
+        .transparent {
+            opacity: .85;
+        }
+
+        footer .navbar-brand {
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 576px) {
+            footer .navbar-brand {
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" v-cloak>
+    <div id="background" v-bind:style="bg"></div>
+
+    <div class="d-flex align-items-center justify-content-center" id="content">
+        <div class="card bg-info transparent">
+            <div class="card-body">
+                <blockquote class="blockquote">
+                    <p class="text-danger">
+                        <i class="fa fa-quote-left"></i>
+                        <span v-text="quote.quote"></span>
+                    </p>
+                    <footer class="blockquote-footer text-white">
+                        <cite title="Source Title" v-text="quote.author"></cite>
+                    </footer>
+                </blockquote>
+                <button class="btn btn-outline-dark-teal float-right icon-refresh" @click="reload">
+                    <i class="fa fa-refresh pr-1"></i>
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<footer class="container-fluid">
+    <nav class="navbar fixed-bottom bg-primary transparent text-white">
+        <div class="mx-auto text-center">
+            &copy; Created and maintained by
+            <a class="navbar-brand text-warning" href="https://parvezmrobin.github.io">Parvez M Robin</a>
+        </div>
+    </nav>
+</footer>
+
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../vendor/vue/vue.js"></script>
+<script src="../vendor/particles/particles.js"></script>
+<script src="../vendor/axios/axios.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    })
+</script>
+
+<script>
+    const URL = 'http://quotes.stormconsultancy.co.uk/random.json';
+    new Vue({
+        el: '.container',
+        data: function () {
+            return {
+                bg: {backgroundColor: '#004953'},
+                quote: {
+                    quote: '',
+                    author: '',
+                }
+            }
+        },
+        methods: {
+          reload: function () {
+              this.quote.quote = 'Loading...';
+              this.quote.author = null;
+
+              axios.get(URL).then(r => {
+                  this.quote.quote = r.data.quote;
+                  this.quote.author = r.data.author;
+              })
+          }
+        },
+        mounted() {
+            this.reload();
+        }
+    })
+</script>
+
+<script>
+    const config = {
+        particles: {
+            number: {
+                value: 50,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: '#ffffff'
+            },
+            shape: {
+                type: 'circle',
+                stroke: {
+                    width: 0,
+                    color: '#000000'
+                },
+                polygon: {
+                    nb_sides: 5
+                },
+                image: {
+                    src: 'img/github.svg',
+                    width: 100,
+                    height: 100
+                }
+            },
+            opacity: {
+                value: 0.5,
+                random: false,
+                anim: {
+                    enable: false,
+                    speed: 1,
+                    opacity_min: 0.1,
+                    sync: false
+                }
+            },
+            size: {
+                value: 3,
+                random: true,
+                anim: {
+                    enable: false,
+                    speed: 40,
+                    size_min: 0.1,
+                    sync: false
+                }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#ffffff',
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 6,
+                direction: 'none',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: false,
+                attract: {
+                    enable: false,
+                    rotateX: 600,
+                    rotateY: 1200
+                }
+            }
+        },
+        interactivity: {
+            detect_on: 'window',
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: 'repulse'
+                },
+                onclick: {
+                    enable: true,
+                    mode: 'push'
+                },
+                resize: true
+            },
+            modes: {
+                grab: {
+                    distance: 400,
+                    line_linked: {
+                        opacity: 1
+                    }
+                },
+                bubble: {
+                    distance: 400,
+                    size: 40,
+                    duration: 2,
+                    opacity: 8,
+                    speed: 3
+                },
+                repulse: {
+                    distance: 150,
+                    duration: 0.4
+                },
+                push: {
+                    particles_nb: 4
+                },
+                remove: {
+                    particles_nb: 2
+                }
+            }
+        },
+        retina_detect: true
+    };
+
+    particlesJS('background', config);
+</script>
+</body>
+</html>
