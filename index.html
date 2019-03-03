@@ -79,7 +79,7 @@
                     Specialized in <strong>Laravel</strong>, <strong>Bootstrap</strong> and <strong>Vue</strong>.
                     Focusing on web development & machine learning, I am keen to work with a company of eminence.
                 </p>
-                <ul class="list-inline list-social-icons mb-0">
+                <ul class="list-inline list-social-icons mb-0 d-flex align-items-center">
                     <li class="list-inline-item fb">
                         <a href="https://www.facebook.com/parvezmrobin" target="_blank">
                         <span class="fa-stack fa-lg">
@@ -762,10 +762,10 @@
     const $iconList = $('.list-social-icons').children();
 
     function animate(animationName) {
-        let i = Math.floor(Math.random() * 4);
+        let i = Math.floor(Math.random() * $iconList.length);
         let $iconElement = $($iconList[i]);
         while ($iconElement.is(':hover')) {
-            i = Math.floor(Math.random() * 4);
+            i = Math.floor(Math.random() * $iconList.length);
             $iconElement = $($iconList[i]);
         }
         $iconElement.removeClass(animationName + ' animated').addClass(animationName + ' animated')
