@@ -281,6 +281,10 @@ section.resume-section {
   }
 }
 
+a {
+  color: #00d0ec;
+}
+
 a:hover, a:focus, a:active {
   color: #00a3b9;
 }
