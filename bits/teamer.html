@@ -199,10 +199,12 @@
       addPlayer: function () {
         this.players.push(this.player);
         this.player = '';
+        localStorage.setItem('players', JSON.stringify(this.players))
       },
       addTeam: function () {
         this.teams.push(this.team);
         this.team = '';
+        localStorage.setItem('teams', JSON.stringify(this.teams))
       },
       generateTeams: function () {
         let teamIndex = -1;
@@ -218,8 +220,19 @@
         }
         this.generatedTeams = generatedTeams;
       },
-    }
-  })
+    },
+
+    mounted: function () {
+      const players = localStorage.getItem('players');
+      if (players) {
+        this.players = JSON.parse(players);
+      }
+      const teams = localStorage.getItem('teams');
+      if (teams) {
+        this.teams = JSON.parse(teams);
+      }
+    },
+  });
 </script>
 
 <script>
