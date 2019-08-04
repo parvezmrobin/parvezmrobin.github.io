@@ -52,7 +52,7 @@
 
         .invalid-feedback {
             font-size: .875rem;
-            color: var(--white);
+            color: white;
         }
 
         .btn-outline-dark-teal {
@@ -69,6 +69,28 @@
 
         .transparent {
             opacity: .85;
+        }
+
+        input.form-control {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            border-bottom: 2px solid antiquewhite;
+            color: ghostwhite;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        input.form-control:focus {
+            background-color: transparent;
+            outline: none;
+            box-shadow: none;
+            border-bottom-color: antiquewhite;
+            color: ghostwhite;
+        }
+
+        input.form-control::placeholder {
+            color: antiquewhite;
         }
 
         footer .navbar-brand {
@@ -93,7 +115,8 @@
                         <h3>
                             <code><a style="color: inherit;" href="." data-content="Go Back">../</a></code>
                             Teamer
-                            <span aria-hidden="true" class="float-right" style="cursor: pointer" data-content="Clear Everything"
+                            <span aria-hidden="true" class="float-right" style="cursor: pointer"
+                                  data-content="Clear Everything"
                                   @click="clearAll">&times;</span>
                         </h3>
                     </div>
@@ -148,7 +171,7 @@
                         </div>
                         <div class="col-md-4">
                             <div>
-                                <button class="btn btn-outline-dark-teal" @click="generateTeams">Generate</button>
+                                <button class="btn btn-outline-dark-teal mt-2 mt-md-0" @click="generateTeams">Generate</button>
                                 <div v-for="(team, teamName) in generatedTeams">
                                     <h5>{{teamName}}</h5>
                                     <ul>
@@ -225,18 +248,22 @@
         localStorage.setItem('teams', JSON.stringify(this.teams));
       },
       generateTeams: function () {
-        let teamIndex = -1;
-        const players = Array.from(this.players);
-        const generatedTeams = {};
-        this.teams.forEach(team => generatedTeams[team] = []);
+        const players = [...this.players];
+        const teams = [];
+        this.generatedTeams = {};
+        this.teams.forEach(team => this.generatedTeams[team] = []);
         while (players.length) {
-          teamIndex = (teamIndex + 1) % this.teams.length;
-          const randomIndex = Math.floor(Math.random() * players.length);
-          const teamName = this.teams[teamIndex];
-          generatedTeams[teamName].push(players[randomIndex]);
-          players.splice(randomIndex, 1);
+          if (!teams.length) {
+            teams.push(...this.teams);
+          }
+          const teamIndex = Math.floor(Math.random() * teams.length);
+          const playerIndex = Math.floor(Math.random() * players.length);
+          const teamName = teams[teamIndex];
+          const playerName = players[playerIndex];
+          this.generatedTeams[teamName].push(playerName);
+          players.splice(playerIndex, 1);
+          teams.splice(teamIndex, 1);
         }
-        this.generatedTeams = generatedTeams;
       },
       removePlayerAt: function (i) {
         this.players.splice(i, 1);
