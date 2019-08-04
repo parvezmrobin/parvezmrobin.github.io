@@ -91,8 +91,9 @@
                 <div class="row">
                     <div class="col">
                         <h3>
+                            <code><a style="color: inherit;" href="." data-content="Go Back">../</a></code>
                             Teamer
-                            <span aria-hidden="true" class="float-right" style="cursor: pointer" title="Clear Everything"
+                            <span aria-hidden="true" class="float-right" style="cursor: pointer" data-content="Clear Everything"
                                   @click="clearAll">&times;</span>
                         </h3>
                     </div>
@@ -394,6 +395,11 @@
   };
 
   particlesJS('background', config);
+
+  $('[data-content]').popover({
+    trigger: 'hover',
+    container: 'body',
+  });
 </script>
 </body>
 </html>
