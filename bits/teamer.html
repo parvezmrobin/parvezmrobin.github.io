@@ -12,9 +12,7 @@
 
     <title>Teamer | Parvez M Robin</title>
 
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../vendor/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="../vendor/vue-swatches/css/vue-swatches.min.css">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
 
     <style>
@@ -115,7 +113,12 @@
                            <div class="row mx-1 flex-column justify-content-between h-100">
                                <div v-if="players.length">
                                    <h4>Player</h4>
-                                   <ul><li v-for="player in players">{{player}}</li></ul>
+                                   <ul>
+                                       <li v-for="(player, i) in players">
+                                            {{player}}
+                                            <span aria-hidden="true" class="float-right" style="cursor: pointer" @click="removePlayerAt(i)">&times;</span>
+                                       </li>
+                                   </ul>
                                </div>
                                <p v-else>No Player Inserted</p>
                                <form @submit.prevent="addPlayer">
@@ -129,7 +132,10 @@
                                 <div v-if="teams.length">
                                     <h4>Teams</h4>
                                     <ul>
-                                        <li v-for="team in teams">{{team}}</li>
+                                        <li v-for="(team, i) in teams">
+                                            {{team}}
+                                            <span aria-hidden="true" class="float-right" style="cursor: pointer" @click="removeTeamAt(i)">&times;</span>
+                                        </li>
                                     </ul>
                                 </div>
                                 <p v-else>No Team Inserted</p>
@@ -199,12 +205,12 @@
       addPlayer: function () {
         this.players.push(this.player);
         this.player = '';
-        localStorage.setItem('players', JSON.stringify(this.players))
+        localStorage.setItem('players', JSON.stringify(this.players));
       },
       addTeam: function () {
         this.teams.push(this.team);
         this.team = '';
-        localStorage.setItem('teams', JSON.stringify(this.teams))
+        localStorage.setItem('teams', JSON.stringify(this.teams));
       },
       generateTeams: function () {
         let teamIndex = -1;
@@ -220,6 +226,14 @@
         }
         this.generatedTeams = generatedTeams;
       },
+      removePlayerAt: function (i) {
+        this.players.splice(i, 1);
+        localStorage.setItem('players', JSON.stringify(this.players));
+      },
+      removeTeamAt: function (i) {
+        this.teams.splice(i, 1);
+        localStorage.setItem('teams', JSON.stringify(this.teams));
+      }
     },
 
     mounted: function () {
