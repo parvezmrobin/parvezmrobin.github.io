@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="https://parvezmrobin.github.io">
+    <meta name="description" content="HEX to RGB or RGBA and RGB or RGBA to HEX Calculator.">
+    <meta name="keywords" content="hex, rgb, rgba, calculator, generator, converter">
+
+    <title>Teamer | Parvez M Robin</title>
+
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="../vendor/vue-swatches/css/vue-swatches.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Overlock', cursive;
+        }
+
+        #content {
+            min-height: 100vh;
+        }
+
+        @media screen and (min-width: 576px) {
+            .card {
+                min-width: 576px;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .card {
+                min-width: 768px;
+            }
+        }
+
+        canvas {
+            display: block;
+            vertical-align: bottom;
+        }
+
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .invalid-feedback {
+            font-size: .875rem;
+            color: black;
+        }
+
+        .btn-outline-white {
+            border-color: white;
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline-white:hover, .btn-outline-white:focus {
+            border-color: silver;
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .btn-outline-dark-teal {
+            border-color: #004953;
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline-dark-teal:hover, .btn-outline-dark-teal:focus {
+            border-color: #004953;
+            background-color: #004953;
+            color: white;
+        }
+
+        .transparent {
+            opacity: .85;
+        }
+
+        footer .navbar-brand{
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 576px) {
+            footer .navbar-brand{
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="background" class="bg-dark"></div>
+    <div class="d-flex align-items-center justify-content-center" id="content">
+        <div class="card bg-info transparent text-white">
+            <div class="card-body">
+                <div class="card-title">
+                    <div class="row">
+                        <div class="col">
+                            <h3>Teamer</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-text">
+                    <div class="row">
+                        <div class="col-md-4">
+                           <div class="row mx-1 flex-column justify-content-between h-100">
+                               <div v-if="players.length">
+                                   <h4>Player</h4>
+                                   <ul><li v-for="player in players">{{player}}</li></ul>
+                               </div>
+                               <p v-else>No Player Inserted</p>
+                               <form @submit.prevent="addPlayer">
+                                   <label for="player" class="sr-only"></label>
+                                   <input id="player" v-model="player" type="text" class="form-control" placeholder="Type player name and press enter">
+                               </form>
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row mx-1 flex-column justify-content-between h-100">
+                                <div v-if="teams.length">
+                                    <h4>Teams</h4>
+                                    <ul>
+                                        <li v-for="team in teams">{{team}}</li>
+                                    </ul>
+                                </div>
+                                <p v-else>No Team Inserted</p>
+                                <form @submit.prevent="addTeam">
+                                    <label for="team" class="sr-only"></label>
+                                    <input id="team" v-model="team" type="text" class="form-control"
+                                           placeholder="Type team name and press enter">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                <button class="btn btn-outline-dark-teal" @click="generateTeams">Generate</button>
+                                <div v-for="(team, teamName) in generatedTeams">
+                                    <h5>{{teamName}}</h5>
+                                    <ul><li v-for="player in team">{{player}}</li></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid">
+    <nav class="navbar fixed-bottom bg-primary transparent text-white">
+        <div class="mx-auto text-center">
+            &copy; Created and maintained by
+            <a class="navbar-brand text-warning" href="https://parvezmrobin.github.io">Parvez M Robin</a>
+        </div>
+    </nav>
+</footer>
+
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../vendor/vue/vue.js"></script>
+<script src="../vendor/particles/particles.js"></script>
+<script src="../vendor/vue-swatches/js/vue-swatches.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+  })
+</script>
+
+<script>
+  new Vue({
+    el: '.container',
+    components: {Swatches: VueSwatches.Swatches},
+    data: function () {
+      return {
+        player: '',
+        players: [],
+        team: '',
+        teams: [],
+        generatedTeams: [],
+      }
+    },
+    methods: {
+      cleanUp: function () {
+        $('.is-invalid').removeClass('is-invalid');
+      },
+      addPlayer: function () {
+        this.players.push(this.player);
+        this.player = '';
+      },
+      addTeam: function () {
+        this.teams.push(this.team);
+        this.team = '';
+      },
+      generateTeams: function () {
+        let teamIndex = -1;
+        const players = Array.from(this.players);
+        const generatedTeams = {};
+        this.teams.forEach(team => generatedTeams[team] = []);
+        while (players.length) {
+          teamIndex = (teamIndex + 1) % this.teams.length;
+          const randomIndex = Math.floor(Math.random() * players.length);
+          const teamName = this.teams[teamIndex];
+          generatedTeams[teamName].push(players[randomIndex]);
+          players.splice(randomIndex, 1);
+        }
+        this.generatedTeams = generatedTeams;
+      },
+    }
+  })
+</script>
+
+<script>
+  const config = {
+    particles: {
+      number: {
+        value: 50,
+        density: {
+          enable: true,
+          value_area: 800
+        }
+      },
+      color: {
+        value: '#ffffff'
+      },
+      shape: {
+        type: 'circle',
+        stroke: {
+          width: 0,
+          color: '#000000'
+        },
+        polygon: {
+          nb_sides: 5
+        },
+        image: {
+          src: 'img/github.svg',
+          width: 100,
+          height: 100
+        }
+      },
+      opacity: {
+        value: 0.5,
+        random: false,
+        anim: {
+          enable: false,
+          speed: 1,
+          opacity_min: 0.1,
+          sync: false
+        }
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: {
+          enable: false,
+          speed: 40,
+          size_min: 0.1,
+          sync: false
+        }
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: '#ffffff',
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 6,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false,
+        attract: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 1200
+        }
+      }
+    },
+    interactivity: {
+      detect_on: 'window',
+      events: {
+        onhover: {
+          enable: true,
+          mode: 'repulse'
+        },
+        onclick: {
+          enable: true,
+          mode: 'push'
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 400,
+          line_linked: {
+            opacity: 1
+          }
+        },
+        bubble: {
+          distance: 400,
+          size: 40,
+          duration: 2,
+          opacity: 8,
+          speed: 3
+        },
+        repulse: {
+          distance: 150,
+          duration: 0.4
+        },
+        push: {
+          particles_nb: 4
+        },
+        remove: {
+          particles_nb: 2
+        }
+      }
+    },
+    retina_detect: true
+  };
+
+  particlesJS('background', config);
+</script>
+</body>
+</html>
