@@ -10,6 +10,12 @@
 
     <title>Parvez M Robin</title>
 
+    <script>
+        if (window.location.host !== 'parvezmrobin.com') {
+          window.location.href = 'https://parvezmrobin.com';
+        }
+    </script>
+
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -832,12 +838,6 @@
         const i = Math.floor(Math.random() * 3);
         animate(animationNames[i]);
     }, 1000)
-</script>
-
-<script>
-if (window.location.host !== 'parvezmrobin.com') {
-  window.location.href = 'https://parvezmrobin.com';
-}
 </script>
 
 </body>
