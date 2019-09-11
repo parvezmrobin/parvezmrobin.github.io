@@ -11,7 +11,7 @@
     <title>Parvez M Robin</title>
 
     <script>
-        if (window.location.host !== 'parvezmrobin.com') {
+        if (['parvezmrobin.com', 'localhost'].indexOf(window.location.hostname) === -1) {
           window.location.href = 'https://parvezmrobin.com';
         }
     </script>
@@ -148,7 +148,7 @@
                 <h2 class="mb-5">Skills</h2>
 
                 <h3 class="alert-heading text-info mb-2">Proficient</h3>
-                <div class="container list-skill proficient mb-3">
+                <div class="col-xl-10 list-skill proficient mb-3">
                     <div class="row">
                         <div class="col-md">
                             <div class="row d-flex align-items-center">
@@ -299,7 +299,7 @@
                 </div>
 
                 <h3 class="alert-heading text-info mb-2">Familiar With</h3>
-                <div class="container list-skill">
+                <div class="col-xl-10 list-skill">
                     <div class="row">
                         <div class="col-md">
                             <div class="row d-flex align-items-center">

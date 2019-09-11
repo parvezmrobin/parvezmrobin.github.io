@@ -340,3 +340,7 @@ ul.carousel-indicators li {
   box-shadow: 0 0 8px #007686;
   background-color: #17a2b8;
 }
+
+.active.carousel-item-left {
+  position: absolute;
+}
