@@ -1,0 +1,25 @@
+/**
+ * Parvez M Robin
+ * this@parvezmrobin.com
+ * Jun 09, 2020
+ */
+
+body {
+    --playback-logo-image: url('https://parvezmrobin.com/bits/oc/img/dark-prince.jpg');
+}
+cast-media-player {
+    --theme-hue: 250;
+    --progress-color: hsl(259, 100%, 38%);
+    --splash-image: url('https://parvezmrobin.com/bits/oc/img/dahaka.jpg');
+    --splash-size: cover;
+}
+
+#wrapper {
+    display: flex;
+    align-items: center;
+    background-color: red;
+}
+
+#wrapper video {
+    width: 33%!important;
+}
