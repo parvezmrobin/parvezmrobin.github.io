@@ -24,43 +24,21 @@ playerManager.setMessageInterceptor(
       return error;
     }
 
-    document.removeEventListener('DOMContentLoaded')
-
-    /** @type {HTMLVideoElement} */
-    const hostEl = document.querySelector('#host')
-    /** @type {HTMLVideoElement} */
-    // const classEl = document.querySelector('#class')
-    /** @type {HTMLVideoElement} */
-    const guestEl = document.querySelector('#guest')
-
-    const spanishRoad = 'https://www.googleapis.com/drive/v3/files/1xO-X2yYyWL0Zm2rGU59Ui0Z0SIeXi9vV?alt=media&key=AIzaSyBYxeBC0UK1bLVbkY73pLMI8ce0gd65jMM';
-    hostEl.setAttribute(
+    /** @type {HTMLIFrameElement} */
+    const iframe = document.getElementById('placeholder')
+    iframe.setAttribute(
       'src',
-      spanishRoad,
+      loadRequestData.media.contentId,
     );
 
-    // guestEl.setAttribute(
-    //   'src',
-    //   spanishRoad,
-    // );
+    /** @type {HTMLParagraphElement} */
+    const p = document.getElementsByTagName('p')[0];
+    p.innerText = JSON.stringify(loadRequestData.media);
 
-    // classEl.setAttribute(
-    //   'src',
-    //   'https://www.googleapis.com/drive/v3/files/15kbxcGQKvhtHljyy5r_6_T2hqw8vW-U2?alt=media&key=AIzaSyBYxeBC0UK1bLVbkY73pLMI8ce0gd65jMM',
-    // );
-
-    const metadata = new cast.framework.messages.MovieMediaMetadata();
-    metadata.title = 'Oiti - Bonolota Sen';
-    metadata.subtitle = 'Jibanananda Das';
-    const oiti = 'https://www.googleapis.com/drive/v3/files/15kbxcGQKvhtHljyy5r_6_T2hqw8vW-U2?alt=media&key=AIzaSyBYxeBC0UK1bLVbkY73pLMI8ce0gd65jMM';
-    loadRequestData.media.contentUrl = oiti;
-    loadRequestData.media.metadata = metadata;
-
-    castDebugLogger.info(LOG_TAG, document.body.innerHTML);
-
-    console.log(LOG_TAG, document.body.innerHTML);
+    castDebugLogger.info(LOG_TAG, loadRequestData.media);
+    console.log(LOG_TAG, loadRequestData.media);
 
     return loadRequestData;
   });
 
-context.start();
+context.start({ disableIdleTimeout: true });
