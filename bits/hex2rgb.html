@@ -105,7 +105,10 @@
                 <div class="card-title">
                     <div class="row">
                         <div class="col">
-                            <h3>Hex to RGB</h3>
+                            <h3>
+                                <code><a style="color: inherit;" href="." data-content="Go Back">../</a></code>
+                                Hex to RGB
+                            </h3>
                         </div>
                         <div class="col">
                             <swatches class="float-right" popover-to="left"
@@ -500,6 +503,10 @@
     };
 
     particlesJS('background', config);
+
+    $('[data-content]').popover({
+      trigger: 'hover',
+    });
 </script>
 </body>
 </html>

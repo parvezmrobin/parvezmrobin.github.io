@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="https://parvezmrobin.github.io">
+    <meta name="description" content="HEX to RGB or RGBA and RGB or RGBA to HEX Calculator.">
+    <meta name="keywords" content="hex, rgb, rgba, calculator, generator, converter">
+
+    <title>Tosser | Parvez M Robin</title>
+
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Overlock', cursive;
+        }
+
+        #content {
+            min-height: 100vh;
+        }
+
+        @media screen and (min-width: 576px) {
+            .card {
+                min-width: 576px;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .card {
+                min-width: 768px;
+            }
+        }
+
+        canvas {
+            display: block;
+            vertical-align: bottom;
+        }
+
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .btn-outline-dark-teal {
+            border-color: #004953;
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline-dark-teal:hover, .btn-outline-dark-teal:focus {
+            border-color: #004953;
+            background-color: #004953;
+            color: white;
+        }
+
+        .transparent {
+            opacity: .85;
+        }
+
+        input.form-control {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            border-bottom: 2px solid antiquewhite;
+            color: ghostwhite;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        input.form-control:focus {
+            background-color: transparent;
+            outline: none;
+            box-shadow: none;
+            border-bottom-color: antiquewhite;
+            color: ghostwhite;
+        }
+
+        input.form-control::placeholder {
+            color: antiquewhite;
+        }
+
+        footer .navbar-brand {
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 576px) {
+            footer .navbar-brand {
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="background" class="bg-dark"></div>
+    <div class="d-flex align-items-center justify-content-center" id="content">
+        <div class="card bg-info transparent text-white">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                        <h3>
+                            <code><a style="color: inherit;" href="." data-content="Go Back">../</a></code>
+                            Tosser
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <div class="row">
+                        <div class="col-md-4 mt-3">
+                            <label for="team1" class="sr-only"></label>
+                            <input id="team1" v-model="team1" type="text" class="form-control"
+                                   placeholder="Team 1">
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <label for="team2" class="sr-only"></label>
+                            <input id="team2" v-model="team2" type="text" class="form-control"
+                                   placeholder="Team 2">
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <button class="btn btn-outline-dark-teal" @click="toss">Toss</button>
+                            <span class="float-right col-form-label" v-show="result">{{result}} won the toss.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid">
+    <nav class="navbar fixed-bottom bg-primary transparent text-white">
+        <div class="mx-auto text-center">
+            &copy; Created and maintained by
+            <a class="navbar-brand text-warning" href="https://parvezmrobin.github.io">Parvez M Robin</a>
+        </div>
+    </nav>
+</footer>
+
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../vendor/vue/vue.js"></script>
+<script src="../vendor/particles/particles.js"></script>
+<script src="../vendor/vue-swatches/js/vue-swatches.min.js"></script>
+
+<script>
+  new Vue({
+    el: '.container',
+    data: function () {
+      return {
+        team1: '',
+        team2: '',
+        result: null,
+      };
+    },
+    methods: {
+      toss: function () {
+        const [team1, team2] = [this.team1 || 'Team 1', this.team2 || 'Team 2'];
+        this.result = Math.random() < .5 ? team1 : team2;
+      },
+    },
+  });
+</script>
+
+<script>
+  const config = {
+    particles: {
+      number: {
+        value: 50,
+        density: {
+          enable: true,
+          value_area: 800
+        }
+      },
+      color: {
+        value: '#ffffff'
+      },
+      shape: {
+        type: 'circle',
+        stroke: {
+          width: 0,
+          color: '#000000'
+        },
+        polygon: {
+          nb_sides: 5
+        },
+        image: {
+          src: 'img/github.svg',
+          width: 100,
+          height: 100
+        }
+      },
+      opacity: {
+        value: 0.5,
+        random: false,
+        anim: {
+          enable: false,
+          speed: 1,
+          opacity_min: 0.1,
+          sync: false
+        }
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: {
+          enable: false,
+          speed: 40,
+          size_min: 0.1,
+          sync: false
+        }
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: '#ffffff',
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 6,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false,
+        attract: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 1200
+        }
+      }
+    },
+    interactivity: {
+      detect_on: 'window',
+      events: {
+        onhover: {
+          enable: true,
+          mode: 'repulse'
+        },
+        onclick: {
+          enable: true,
+          mode: 'push'
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 400,
+          line_linked: {
+            opacity: 1
+          }
+        },
+        bubble: {
+          distance: 400,
+          size: 40,
+          duration: 2,
+          opacity: 8,
+          speed: 3
+        },
+        repulse: {
+          distance: 150,
+          duration: 0.4
+        },
+        push: {
+          particles_nb: 4
+        },
+        remove: {
+          particles_nb: 2
+        }
+      }
+    },
+    retina_detect: true
+  };
+
+  particlesJS('background', config);
+
+  $('[data-content]').popover({
+    trigger: 'hover',
+    container: 'body',
+  });
+</script>
+</body>
+</html>

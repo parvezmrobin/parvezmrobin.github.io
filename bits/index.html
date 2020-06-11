@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bits By Parvez M Robin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/resume.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
+
+    <style>
+        canvas {
+            display: block;
+            vertical-align: bottom;
+        }
+
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .transparent {
+            opacity: .85;
+        }
+
+        footer .navbar-brand{
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 576px) {
+            footer .navbar-brand{
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="background" id="background"></div>
+    <div class="row vh-100 d-flex align-items-center justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <ul class="fa-ul mb-0 list-certification">
+                <li>
+                    <a href="./hex2rgb.html">
+                        <i class="fa-li fa fa-trophy text-info"></i>
+                        <strong>Hex to RGB</strong>: Convert hex color to RGB and RGBA and vice versa.
+                        Facilitates to preview color and also select color from color panel.
+                    </a>
+                </li>
+                <li>
+                    <a href="./teamer.html">
+                        <i class="fa-li fa fa-trophy text-info"></i>
+                        <strong>Teamer</strong>: Make random teams from given list of players and teams.
+                    </a>
+                </li>
+                <li>
+                    <a href="./tosser.html">
+                        <i class="fa-li fa fa-trophy text-info"></i>
+                        <strong>Tosser</strong>: Make random toss between two teams.
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <footer class="container-fluid">
+        <nav class="navbar fixed-bottom bg-info transparent text-white">
+            <div class="mx-auto text-center">
+                &copy; Created and maintained by
+                <a class="navbar-brand text-warning" href="https://parvezmrobin.github.io">Parvez M Robin</a>
+            </div>
+        </nav>
+    </footer>
+</div>
+
+
+<script src="../vendor/particles/particles.js"></script>
+
+<script>
+  var config = {
+    particles: {
+      number: {
+        value: 50,
+        density: {
+          enable: true,
+          value_area: 800
+        }
+      },
+      color: {
+        value: '#ffffff'
+      },
+      shape: {
+        type: 'circle',
+        stroke: {
+          width: 0,
+          color: '#000000'
+        },
+        polygon: {
+          nb_sides: 5
+        },
+        image: {
+          src: 'img/github.svg',
+          width: 100,
+          height: 100
+        }
+      },
+      opacity: {
+        value: 0.5,
+        random: false,
+        anim: {
+          enable: false,
+          speed: 1,
+          opacity_min: 0.1,
+          sync: false
+        }
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: {
+          enable: false,
+          speed: 40,
+          size_min: 0.1,
+          sync: false
+        }
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: '#ffffff',
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 6,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false,
+        attract: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 1200
+        }
+      }
+    },
+    interactivity: {
+      detect_on: 'window',
+      events: {
+        onhover: {
+          enable: true,
+          mode: 'repulse'
+        },
+        onclick: {
+          enable: true,
+          mode: 'push'
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 400,
+          line_linked: {
+            opacity: 1
+          }
+        },
+        bubble: {
+          distance: 400,
+          size: 40,
+          duration: 2,
+          opacity: 8,
+          speed: 3
+        },
+        repulse: {
+          distance: 150,
+          duration: 0.4
+        },
+        push: {
+          particles_nb: 4
+        },
+        remove: {
+          particles_nb: 2
+        }
+      }
+    },
+    retina_detect: true
+  };
+
+  particlesJS('background', config);
+</script>
+</body>
+</html>
