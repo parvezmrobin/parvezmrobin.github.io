@@ -31,10 +31,6 @@ playerManager.setMessageInterceptor(
       loadRequestData.media.contentId,
     );
 
-    /** @type {HTMLParagraphElement} */
-    const p = document.getElementsByTagName('p')[0];
-    p.innerText = JSON.stringify(loadRequestData.media);
-
     castDebugLogger.info(LOG_TAG, loadRequestData.media);
     console.log(LOG_TAG, loadRequestData.media);
 
