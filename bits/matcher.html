@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="https://parvezmrobin.github.io">
+    <meta name="description" content="HEX to RGB or RGBA and RGB or RGBA to HEX Calculator.">
+    <meta name="keywords" content="hex, rgb, rgba, calculator, generator, converter">
+
+    <title>Teamer | Parvez M Robin</title>
+
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Overlock', cursive;
+        }
+
+        #content {
+            min-height: 100vh;
+        }
+
+        @media screen and (min-width: 576px) {
+            .card {
+                min-width: 576px;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .card {
+                min-width: 768px;
+            }
+        }
+
+        canvas {
+            display: block;
+            vertical-align: bottom;
+        }
+
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .invalid-feedback {
+            font-size: .875rem;
+            color: white;
+        }
+
+        .btn-outline-dark-teal {
+            border-color: #004953;
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline-dark-teal:hover, .btn-outline-dark-teal:focus {
+            border-color: #004953;
+            background-color: #004953;
+            color: white;
+        }
+
+        .transparent {
+            opacity: .85;
+        }
+
+        input.form-control {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            border-bottom: 2px solid antiquewhite;
+            color: ghostwhite;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        input.form-control:focus {
+            background-color: transparent;
+            outline: none;
+            box-shadow: none;
+            border-bottom-color: antiquewhite;
+            color: ghostwhite;
+        }
+
+        input.form-control::placeholder {
+            color: antiquewhite;
+        }
+
+        footer .navbar-brand {
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 576px) {
+            footer .navbar-brand {
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="background" class="bg-dark"></div>
+    <div class="d-flex align-items-center justify-content-center" id="content">
+        <div class="card bg-info transparent text-white">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                        <h3>
+                            <code><a style="color: inherit;" href="." data-content="Go Back">../</a></code>
+                            Matcher
+                            <span aria-hidden="true" class="float-right" style="cursor: pointer"
+                                  data-content="Clear Everything"
+                                  @click="clearAll">&times;</span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="row mx-1 flex-column justify-content-between h-100">
+                                <form @submit.prevent="addTeam">
+                                    <label for="team" class="sr-only"></label>
+                                    <input id="team" v-model="team" type="text" class="form-control"
+                                           :class="{'is-invalid': error === 'team'}"
+                                           placeholder="Type team name and press enter">
+                                    <div class="invalid-feedback">Team already exists</div>
+                                </form>
+                                <div v-if="teams.length">
+                                    <h4>Teams</h4>
+                                    <ul>
+                                        <li v-for="(team, i) in teams">
+                                            {{ team }}
+                                            <span aria-hidden="true" class="float-right" style="cursor: pointer"
+                                                  @click="removeTeamAt(i)">&times;</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p v-else>No Team Inserted</p>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row mx-1 flex-column justify-content-between h-100">
+                                <form @submit.prevent="match">
+                                    <label for="numMatch" class="sr-only"></label>
+                                    <input id="numMatch" v-model="numMatch" type="text" class="form-control"
+                                           :class="{'is-invalid': error === 'numMatch'}"
+                                           placeholder="Type number of matches and press enter">
+                                    <div class="invalid-feedback">Number of matches should be a positive number</div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div>
+                                <button class="btn btn-outline-dark-teal mt-2 mt-md-0" @click="match">Match
+                                </button>
+                                <div v-for="_match in matches">
+                                    <h5>{{ _match[0] }} vs {{ _match[1] }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid">
+    <nav class="navbar fixed-bottom bg-primary transparent text-white">
+        <div class="mx-auto text-center">
+            &copy; Created and maintained by
+            <a class="navbar-brand text-warning" href="https://parvezmrobin.github.io">Parvez M Robin</a>
+        </div>
+    </nav>
+</footer>
+
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../vendor/vue/vue.js"></script>
+<script src="../vendor/particles/particles.js"></script>
+<script src="../vendor/vue-swatches/js/vue-swatches.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    });
+</script>
+
+<script>
+    new Vue({
+        el: '.container',
+        data: function () {
+            return {
+                team: '',
+                teams: [],
+                numMatch: '',
+                matches: [],
+                error: null,
+            };
+        },
+        watch: {
+            numMatch(value) {
+                localStorage.setItem('numMatch', JSON.stringify(value));
+            },
+        },
+        methods: {
+            cleanUp: function () {
+                $('.is-invalid').removeClass('is-invalid');
+            },
+            addTeam: function () {
+                if (this.teams.includes(this.team)) {
+                    this.error = 'team';
+                    return;
+                }
+                (this.error === 'team') && (this.error = null);
+                this.teams.push(this.team);
+                this.team = '';
+                localStorage.setItem('teams', JSON.stringify(this.teams));
+            },
+            match: function () {
+                let teams;
+                let matches;
+                let matchCount;
+                let tick;
+
+                const restart = () => {
+                    tick = new Date().valueOf();
+                    teams = [...this.teams];
+                    matches = [];
+                    matchCount = Object.fromEntries(teams.map((team) => [team, 0]));
+                }
+
+
+                const getRandomTeam = (team0 = '') => {
+                    while (true) {
+                        const tock = new Date().valueOf();
+                        if (tock - tick > 2000) {
+                            return null; // indicate restart
+                        }
+
+                        const j = Math.floor(Math.random() * teams.length);
+                        const team = teams[j];
+                        if (matchCount[team] < this.numMatch && team !== team0) {
+                            return team
+                        }
+                    }
+                }
+
+                const assignMatches = () => {
+                    for (const team0 of teams) {
+                        for (let i = matchCount[team0]; i < this.numMatch; i++) {
+                            const team1 = getRandomTeam(team0);
+                            if (team1 === null) {
+                                debugger;
+                                return false;
+                            }
+                            matchCount[team0]++;
+                            matchCount[team1]++;
+                            matches.push([team0, team1]);
+                        }
+                    }
+                    return true;
+                }
+
+                restart();
+                while (!assignMatches()) {
+                    restart();
+                }
+
+                this.matches = matches;
+            },
+            removeTeamAt: function (i) {
+                this.teams.splice(i, 1);
+                localStorage.setItem('teams', JSON.stringify(this.teams));
+            },
+            clearAll: function () {
+                const res = confirm('Are you sure to clear all teams?');
+                if (!res) {
+                    return;
+                }
+
+                const defaultData = {
+                    team: '',
+                    teams: [],
+                    numMatch: '',
+                    matches: [],
+                    error: null,
+                };
+
+                for (const key in defaultData) {
+                    this[key] = defaultData[key];
+                }
+                localStorage.setItem('numMatch', JSON.stringify(this.numMatch));
+                localStorage.setItem('teams', JSON.stringify(this.teams));
+            },
+        },
+
+        mounted: function () {
+            const numMatch = localStorage.getItem('numMatch');
+            if (numMatch) {
+                this.numMatch = JSON.parse(numMatch);
+            }
+            const teams = localStorage.getItem('teams');
+            if (teams) {
+                this.teams = JSON.parse(teams);
+            }
+        },
+    });
+</script>
+
+<script>
+    const config = {
+        particles: {
+            number: {
+                value: 50,
+                density: {
+                    enable: true,
+                    value_area: 800,
+                },
+            },
+            color: {
+                value: '#ffffff',
+            },
+            shape: {
+                type: 'circle',
+                stroke: {
+                    width: 0,
+                    color: '#000000',
+                },
+                polygon: {
+                    nb_sides: 5,
+                },
+                image: {
+                    src: 'img/github.svg',
+                    width: 100,
+                    height: 100,
+                },
+            },
+            opacity: {
+                value: 0.5,
+                random: false,
+                anim: {
+                    enable: false,
+                    speed: 1,
+                    opacity_min: 0.1,
+                    sync: false,
+                },
+            },
+            size: {
+                value: 3,
+                random: true,
+                anim: {
+                    enable: false,
+                    speed: 40,
+                    size_min: 0.1,
+                    sync: false,
+                },
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#ffffff',
+                opacity: 0.4,
+                width: 1,
+            },
+            move: {
+                enable: true,
+                speed: 6,
+                direction: 'none',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: false,
+                attract: {
+                    enable: false,
+                    rotateX: 600,
+                    rotateY: 1200,
+                },
+            },
+        },
+        interactivity: {
+            detect_on: 'window',
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: 'repulse',
+                },
+                onclick: {
+                    enable: true,
+                    mode: 'push',
+                },
+                resize: true,
+            },
+            modes: {
+                grab: {
+                    distance: 400,
+                    line_linked: {
+                        opacity: 1,
+                    },
+                },
+                bubble: {
+                    distance: 400,
+                    size: 40,
+                    duration: 2,
+                    opacity: 8,
+                    speed: 3,
+                },
+                repulse: {
+                    distance: 150,
+                    duration: 0.4,
+                },
+                push: {
+                    particles_nb: 4,
+                },
+                remove: {
+                    particles_nb: 2,
+                },
+            },
+        },
+        retina_detect: true,
+    };
+
+    particlesJS('background', config);
+
+    $('[data-content]').popover({
+        trigger: 'hover',
+        container: 'body',
+    });
+</script>
+</body>
+</html>
