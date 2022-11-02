@@ -15,6 +15,12 @@
 
     <title>Parvez M Robin</title>
 
+    <script>
+    if (['parvezmrobin.com', 'localhost'].indexOf(window.location.hostname) === -1) {
+      window.location.href = 'https://parvezmrobin.com';
+    }
+    </script>
+
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -865,6 +871,27 @@
 $(function () {
   $('[data-toggle="popover"]').popover();
 })
+
+const animationNames = ['rubberBand', 'swing', 'tada'];
+const $iconList = $('.list-social-icons').children();
+
+function animate(animationName) {
+  let i = Math.floor(Math.random() * $iconList.length);
+  let $iconElement = $($iconList[i]);
+  while ($iconElement.is(':hover')) {
+    i = Math.floor(Math.random() * $iconList.length);
+    $iconElement = $($iconList[i]);
+  }
+  $iconElement.removeClass(animationName + ' animated').addClass(animationName + ' animated')
+    .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+      $(this).removeClass(animationName + ' animated');
+    });
+}
+
+setInterval(() => {
+  const i = Math.floor(Math.random() * 3);
+  animate(animationNames[i]);
+}, 1000)
 </script>
 
 </body>
