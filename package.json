@@ -17,6 +17,10 @@
     "type": "git",
     "url": "https://github.com/parvezmrobin/parvezmrobin.github.io.git"
   },
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
   "dependencies": {
     "animate.css": "^3.6.1",
     "bootstrap": "^4.3.1",
